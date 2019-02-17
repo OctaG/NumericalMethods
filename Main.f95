@@ -10,8 +10,9 @@ PROGRAM MetodosNumericos
   print*, "Welcome to this very cool program"
   print*, "Here you can choose between 4 amazing numerical methods to find the root of a non-linear function"
 
-  do while(option /= 5)
-    print*, "Select one option [1: Bisection | 2: False- Position | 3: Newton-Raphson | 4: Secant | 5: Salir] "
+  do while(option /= 5) ! not equal
+    call funcionHumanize()
+    print*, "Select one option [1: Bisection | 2: False- Position | 3: Newton-Raphson | 4: Secant | 5: Exit] "
     read*, option
 
     select case(option)
