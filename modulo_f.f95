@@ -54,7 +54,7 @@ MODULE modulo_f
        END IF
      END DO
    END SUBROUTINE askForTwoInputs
- 
+
    SUBROUTINE askForStopValues(tolerancia, max)
      real:: tolerancia
      integer:: max
@@ -64,14 +64,37 @@ MODULE modulo_f
      read*, max
    END SUBROUTINE askForStopValues
 
+   SUBROUTINE checkDerivative(x1, derivativeIsOk)
+     integer:: option
+     real:: x1
+     logical:: derivativeIsOk
+
+     derivativeIsOk = .false.
+
+     DO WHILE(derivativeIsOk .neqv. .true.)
+       IF(funcionDerivada(x1) == 0) THEN
+         print*, "The x1 you gave, evaluated in the derivative of the function is 0. Please give another value"
+         print*, "[Type 0 to give another interval or 1 to exit the method]"
+         read*, option
+         IF(option == 1) THEN
+           exit
+         ELSE
+           call askForOneInput(x1)
+         END IF
+       ELSE
+         derivativeIsOk = .true.
+       END IF
+     END DO
+   END SUBROUTINE checkDerivative
+
    !Result of all the methods
    SUBROUTINE output(c, iter)
      real:: c
      integer:: iter
 
      print*, "Value found: ", c
-     print*, funcion(c)
-     print*, iter
+     print*, "Value evaluated at function: ", funcion(c)
+     print*, "Number of iterations: ", iter
    END SUBROUTINE output
 
 END MODULE modulo_f
