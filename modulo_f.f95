@@ -20,7 +20,9 @@ MODULE modulo_f
     FUNCTION calcularErrorRelativo(xNew, xOld)
       real:: calcularErrorRelativo
       real:: xNew, xOld
-      calcularErrorRelativo = (ABS((xNew - xOld) / xNew)) * 100
+      IF(xNew /= 0) THEN
+        calcularErrorRelativo = (ABS((xNew - xOld) / xNew)) * 100
+      END IF
     END function calcularErrorRelativo
 
     !Used in open methods
