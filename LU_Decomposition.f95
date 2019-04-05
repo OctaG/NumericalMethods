@@ -1,4 +1,5 @@
 program LU_Decomposition
+use modulo_f
 
   integer:: n
   real, dimension(:,:), allocatable :: a
@@ -6,19 +7,7 @@ program LU_Decomposition
   real, dimension(:), allocatable :: x
   real:: sum
 
-  open(1, file = 'myData.txt')
-  read(1, *) n
-
-  open(2, file = 'results.txt')
-
-  allocate(a(n,n))
-  allocate(b(n))
-  allocate(x(n))
-
-  read(1, *) a
-  a = transpose(a)
-
-  read(1, *) b
+  call writeFileToMatrix(n, a, b, x)
 
   !Decomposition phase using crout
   do j = 2, n
@@ -70,9 +59,7 @@ program LU_Decomposition
     x(i) = (b(i) - sum)
   end do
 
-  a = transpose(a)
-  write(2, *) a
-  write(2, *) "This are your results:"
-  write(2, *) nint(x)
+  call writeResultsToFile(a,x)
+
 
 end program LU_Decomposition

@@ -144,4 +144,42 @@ MODULE modulo_f
 
   !============================================================================
 
+  !========================== READ & WRITE TO FILES ===========================
+
+  subroutine writeFileToMatrix(n, a, b, x)
+    integer:: n
+    real, dimension(:,:), allocatable :: a
+    real, dimension(:), allocatable :: b
+    real, dimension(:), allocatable :: x
+
+    open(1, file = 'myData.txt')
+    read(1, *) n
+
+    allocate(a(n,n))
+    allocate(b(n))
+    allocate(x(n))
+
+    read(1, *) a
+    a = transpose(a)
+
+    read(1, *) b
+  end subroutine writeFileToMatrix
+
+  subroutine writeResultsToFile(a, x)
+
+    real, dimension(:,:), allocatable :: a
+    real, dimension(:), allocatable :: x
+
+    open(2, file = 'results.txt')
+
+    a = transpose(a)
+
+    write(2, *) a
+    write(2, *) "This are your results:"
+    write(2, *) nint(x)
+
+  end subroutine writeResultsToFile
+
+  !============================================================================
+
 END MODULE modulo_f
