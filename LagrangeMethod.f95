@@ -26,7 +26,7 @@ CONTAINS
 
 	close(7)
     
-	print*, "Give me the point you want evaluated"
+	print*, "Give me the point you want evaluated."
     read*, value
 
 	print*, "Give me the degree of the polynomial"
@@ -62,6 +62,10 @@ CONTAINS
     end do
     
 	print*, sum
+
+    open(8, file="LagrangeOutcome.txt")
+    write(8, *) "The result of interpolating x=", value, "is P(", value, ")= ", sum
+    close(8)
 
 END SUBROUTINE Lagrange
 
