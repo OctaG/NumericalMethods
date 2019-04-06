@@ -14,7 +14,7 @@ PROGRAM MetodosNumericos2
 
     select case(option)
     case (1)
-      print*, "Lagrange Metodo"
+      print*, "Lagrange Metodos"
       call Lagrange()
     case(2)
     	print*, "Power Series"

@@ -8,7 +8,7 @@ CONTAINS
 	real:: product, value, sum, limit, resultP
     real, dimension(:), allocatable::x
     real, dimension(:), allocatable::y
-    real, dimension(3)::a
+    real, dimension(:), allocatable::a
     real, dimension(:,:), allocatable::matrix
 	integer:: n, i, j, degree, point, size, pointT
     logical:: isNotValid
@@ -89,6 +89,7 @@ pointT=point
 	print*,"Solve matrix."
 	call gaussP()
 	
+	allocate(a(degree+1))
     resultP=0
     open(9, file="ResultsPowerSeries.txt")
 		read(9, *) a
