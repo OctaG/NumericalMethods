@@ -1,34 +1,32 @@
-PROGRAM MetodosNumericos
+PROGRAM Main
 
-  use BisectionMethod
-  use FalsePositionMethod
-  use NewtonMethod
-  use SecanteMethod
+  !Modules used
+  use RootFindingMethods
+  use SystemOfLinearEquationsSolver
+  use InterpolationMethods
 
   integer:: option
 
   print*, "Welcome to this very cool program"
-  print*, "Here you can choose between 4 amazing numerical methods to find the root of a non-linear function"
 
-  do while(option /= 5) ! not equal
-    call funcionHumanize()
-    print*, "Select one option [1: Bisection | 2: False- Position | 3: Newton-Raphson | 4: Secant | 5: Exit] "
+  !This is the menu for all the different methods
+  do while(option /= 4) ! not equal
+
+    print*, "MAIN MENU"
+    print*, "Select one option [1: Root Finding | 2: System Of Linear Equations Solver | 3: Interpolation | 4: Exit] "
     read*, option
 
     select case(option)
     case (1)
-      print*, "Bisection"
-      call Bisection()
+      print*, "Root Finding Methods"
+      call RootFinding()
     case (2)
-      print *, "False-Position"
-      call FalsePosition()
+      print *, "System Of Linear Equations Solver"
+      call SystemOfLinearEquations()
     case (3)
-      print *, "Newton-Raphson"
-      call Newton()
+      print *, "Interpolation"
+      call Interpolation()
     case (4)
-      print *, "Secant"
-      call Secante()
-    case (5)
       print*, "Good Bye"
       print*, "A happy face before you leave: =)"
     case default
@@ -36,4 +34,4 @@ PROGRAM MetodosNumericos
     end select
   end do
 
-END PROGRAM MetodosNumericos
+END PROGRAM Main

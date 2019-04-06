@@ -160,15 +160,19 @@ MODULE modulo_f
     allocate(x(n))
 
     read(1, *) a
+    !Changes the format of the matrix
     a = transpose(a)
 
     read(1, *) b
+
+    close (1, status = 'keep')
   end subroutine writeFileToMatrix
 
-  subroutine writeResultsToFile(a, x)
+  subroutine writeResultsToFile(a, x, n)
 
     real, dimension(:,:), allocatable :: a
     real, dimension(:), allocatable :: x
+    integer :: i, n
 
     open(2, file = 'results.txt')
 
@@ -176,8 +180,11 @@ MODULE modulo_f
 
     write(2, *) a
     write(2, *) "This are your results:"
-    write(2, *) nint(x)
-
+    !Writes results as a list of variables
+    do i = 1, n
+      write(2, "(a2, i0, a3, f8.4)") "x", i, "= ", x(i)
+    end do
+    close (2, status = 'keep')
   end subroutine writeResultsToFile
 
   !============================================================================
