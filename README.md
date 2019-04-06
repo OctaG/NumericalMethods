@@ -8,3 +8,19 @@ Fortran project with the implementation of different numerical methods
 **To run the executable file:**
 1. Change the curring working directory to the project's location
 2. `$ ./methods.out`
+
+**To update the data of the systems of linear equations**
+1. Open myData.txt
+2. The appropiate format of the data is as follows:
+-  n (This is the number of colums and rows of matrix [A])
+-  a1,1 a1,2 ... a1,n
+   a2,1 a2,2 ... a2,n
+   .
+   .
+   .
+   an,1 an,2 ... an,n
+-  b1 b2 ... bn
+
+**Where can I find my results?**
+The results will be saved in results.txt
+The resulting matrix [A] will appear first, followed by the results of X1 to Xn

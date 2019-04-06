@@ -21,9 +21,11 @@ module SystemOfLinearEquationsSolver
         select case(option)
         case (1)
           print*, "Gaussian Elimination"
+          call printReminder()
           call GaussianElimination()
         case(2)
         	print*, "LU Decomposition"
+          call printReminder()
           call LU_Decomposition()
         case(3)
           print*, "Gauss-Seidel"
@@ -36,5 +38,10 @@ module SystemOfLinearEquationsSolver
 
       end do
     end subroutine SystemOfLinearEquations
+
+    subroutine printReminder()
+      print*, "Remeber that the matrix data must be in myData.txt under the appropiate format. Check documentation if needed."
+      print*, "The results of the system will be saved in results.txt"
+    end subroutine printReminder
 
 end module SystemOfLinearEquationsSolver
