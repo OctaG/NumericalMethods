@@ -9,24 +9,18 @@ SUBROUTINE gaussP()
   real, dimension(:), allocatable :: x
   real:: sum
 	
-	print*, "Doing gaussP"
     open(5, file = 'PowerSeriesMatrix.txt')
-    print*, "Doing gaussP"
     read(5, *) n
    
 	allocate(a(n,n))
     allocate(b(n))
     allocate(x(n))
-	print*, "Doing gaussP"
     read(5, *) a
     a = transpose(a)
 
     read(5, *) b
 	
-	!close(5)
-	print*, "Until here."
     
-    print*, a
     close(5)
   !Forward elimination
   do k = 1, n-1

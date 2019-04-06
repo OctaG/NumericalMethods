@@ -62,6 +62,7 @@ CONTAINS
     end do
     
 	print*, sum
+    print*, "Result is written in LagrangeOutcome.txt"
 
     open(8, file="LagrangeOutcome.txt")
     write(8, *) "The result of interpolating x=", value, "is P(", value, ")= ", sum

@@ -19,7 +19,7 @@ CONTAINS
     isNotValid=.true.
 	
 	open(7, file = 'Points.txt')
-  	read(7, *) n!20
+  	read(7, *) n
 	
 	allocate(x(n))
   	allocate(y(n))
@@ -59,25 +59,20 @@ CONTAINS
 
     do i=1, size
 		matrix(i,1)=1
-        print*, matrix(i,1)!60
+        !print*, matrix(i,1)!60
     end do
 	
-print*, size
-pointT=point
+	pointT=point
 
     do i=1, size
-      
-      print*, "I ",i
 		do j=2, size
-        	print*, "Point T",pointT
 			matrix(i,j)=x(pointT)**(j-1)
-            print*, "J ",j
     	end do
 
         pointT=pointT+1
     end do
 
-    print*, matrix
+    !print*, matrix
 
     open(8, file="PowerSeriesMatrix.txt")
     write(8, *) size
@@ -86,7 +81,6 @@ pointT=point
     end do
     write(8, *) (y(i), i=point, point+degree)
     close(8)
-	print*,"Solve matrix."
 	call gaussP()
 	
 	allocate(a(degree+1))
@@ -100,6 +94,11 @@ pointT=point
     close(9)
 
     print*, resultP
+    print*, "Result written in PowerSeriesFinalOutcome.txt"
+
+    open(11, file="PowerSeriesFinalOutcome.txt")
+    write(11, *) "The result of interpolating x=", value, "is P(", value, ")= ", resultP
+    close(11)
 
 END SUBROUTINE PowerSeries
 
