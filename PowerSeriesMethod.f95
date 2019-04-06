@@ -1,14 +1,16 @@
 MODULE PowerSeriesMethod
+use GaussforPower
 
 CONTAINS
 
 	SUBROUTINE PowerSeries()
 
-	real:: product, value, sum, limit
+	real:: product, value, sum, limit, resultP
     real, dimension(:), allocatable::x
     real, dimension(:), allocatable::y
-    real, dimension(:,:), allocatable::matrix!10
-	integer:: n, i, j, degree, point, size, pointT !11
+    real, dimension(3)::a
+    real, dimension(:,:), allocatable::matrix
+	integer:: n, i, j, degree, point, size, pointT
     logical:: isNotValid
     sum=0
     value=0
@@ -27,7 +29,7 @@ CONTAINS
 
 	close(7)
     
-	print*, "Give me the point you want evaluated."!30
+	print*, "Give me the point you want evaluated."
     read*, value
 
 	print*, "Give me the degree of the polynomial."
@@ -77,13 +79,26 @@ pointT=point
 
     print*, matrix
 
-    open(8, file="PowerSeriesMatrix.txt")!70
+    open(8, file="PowerSeriesMatrix.txt")
     write(8, *) size
     do i=1, size
 		write(8, *) (matrix(i, j), j=1, size)
     end do
     write(8, *) (y(i), i=point, point+degree)
     close(8)
+	print*,"Solve matrix."
+	call gaussP()
+	
+    resultP=0
+    open(9, file="ResultsPowerSeries.txt")
+		read(9, *) a
+		do i=1, degree+1
+			resultP=resultP+a(i)*value**(i-1)	
+        end do
+        
+    close(9)
+
+    print*, resultP
 
 END SUBROUTINE PowerSeries
 
