@@ -3,6 +3,7 @@ module SystemOfLinearEquationsSolver
   !Modules used
   use GaussianEliminationMethod
   use LU_DecompositionMethod
+  use GaussSeidelMethod
 
   contains
 
@@ -29,7 +30,7 @@ module SystemOfLinearEquationsSolver
           call LU_Decomposition()
         case(3)
           print*, "Gauss-Seidel"
-          !Aqui va la llamada a GaussSeidel()
+          call GaussSeidel()
         case(4)
           print*, "You have left the system of linear equations solver module"
         case default

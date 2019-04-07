@@ -33,3 +33,12 @@
 *.exe
 *.out
 *.app
+Executable/
+
+#Logs errors
+BuildLog
+ErrorLog
+bin/*
+
+#Outputs
+results.txt

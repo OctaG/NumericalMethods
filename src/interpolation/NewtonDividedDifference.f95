@@ -1,0 +1,1 @@
+!2. `$ gfortran modulo_f.f95 BisectionMethod.f95 FalsePositionMethod.f95 NewtonMethod.f95 SecanteMethod.f95 GaussianEliminationMethod.f95 LU_DecompositionMethod.f95 GaussSeidelMethod.f95 GaussforPower.f95 PowerSeriesMethod.f95 LagrangeMethod.f95  RootFindingMethods.f95 SystemOfLinearEquationsSolver.f95 InterpolationMethods.f95  Main.f95`

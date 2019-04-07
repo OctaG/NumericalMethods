@@ -152,7 +152,7 @@ MODULE modulo_f
     real, dimension(:), allocatable :: b
     real, dimension(:), allocatable :: x
 
-    open(1, file = 'myData.txt')
+    open(1, file = 'inputs/myData.txt')
     read(1, *) n
 
     allocate(a(n,n))
