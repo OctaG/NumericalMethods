@@ -1,12 +1,17 @@
 # Numerical Methods
 Fortran project with the implementation of different numerical methods
 
+## Set up
+
 **To compile:**
 1. Change the current working directory to the project's location :
+
    a. `$ cd NumericalMethods`
 
 2. Then you have two options to compile:
+
    a. `$ make all`
+
    b. `$ make`
 
 *note: if you change the functions in `functions.f95` you have to run the command to compile again* 
@@ -20,7 +25,10 @@ a. `$ make clean`
 
 ## Data inputs
 Inputs files are in directory `inputs`
-### To update the data of the systems of linear equations
+
+### System Of Linear Equations
+
+**To update the data of the systems of linear equations**
 1. Open `myData.txt`
 2. The appropiate format of the data is as follows:
 -  $n$ (This is the number of colums and rows of matrix $[A]$)
@@ -37,11 +45,14 @@ Inputs files are in directory `inputs`
 
 -  $b1\:b2\:...\:b_{n}$
 
-### Where can I find my results?
+**Where can I find my results?**
+
 The results will be saved in `results.txt`
 The resulting matrix $[A]$ will appear first, followed by the results of $X_1$ to $X_n$
 
-### How to use Power Series and Lagrange
+### Interpolation
+
+**How to use Power Series and Lagrange**
 1. Both programs read the points from a text file called `Points.txt`
 2. The appropiate format of the data is as follows:
 -  $n$ (This is the number of points)
@@ -52,7 +63,7 @@ The resulting matrix $[A]$ will appear first, followed by the results of $X_1$ t
 4. Both programs: the user will be asked for the value of $x$ that they want to use, then they will be asked for the order of the polynomial and, finally, 
 the user will be asked for the point from which they want to start the evaluation.
 
-### How do the Power Series and Lagrange programs work
+**How do the Power Series and Lagrange programs work**
 1. The LagrangeMethod program works like a function and it can work without the need of other programs. It only needs the `Points.txt` text file. It writes the final results.
 in the `LagrangeOutcome.txt`
 2. The PowerSeriesMethod program needs the GaussforPower program in order to get the solution of the matrix that it creates. After the GaussforPower program is done solving the matrix of the PowerSeriesMethod program (the matrix is saved in `PowerSeriesMatrix.txt` and the solution of the matrix in `ResultsPowerSeries.txt`), the Power Series program reads the solution and writes the final result in the `PowerSeriesFinalOutcome.txt`

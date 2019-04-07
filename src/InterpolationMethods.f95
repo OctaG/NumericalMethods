@@ -3,6 +3,7 @@ module InterpolationMethods
   !Modules used
   use PowerSeriesMethod
   use LagrangeMethod
+  use NewtonDivededDifference
 
   contains
 
@@ -27,7 +28,7 @@ module InterpolationMethods
           call Lagrange()
         case(3)
           print*, "Newton-Divided Differences"
-          !Aqui va la llamada a NewtonDivided()
+          call NewtonDivided()
         case(4)
           print*, "You have left the interpolation module"
         case default

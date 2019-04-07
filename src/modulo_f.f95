@@ -147,12 +147,15 @@ MODULE modulo_f
   !========================== READ & WRITE TO FILES ===========================
 
   subroutine writeFileToMatrix(n, a, b, x)
+    character(len = 11) :: filename
     integer:: n
     real, dimension(:,:), allocatable :: a
     real, dimension(:), allocatable :: b
     real, dimension(:), allocatable :: x
 
-    open(1, file = 'inputs/myData.txt')
+    filename = "myData.txt"
+    !print*, "Reading now from", filename
+    open(1, file = 'inputs/'//filename)
     read(1, *) n
 
     allocate(a(n,n))
@@ -169,12 +172,13 @@ MODULE modulo_f
   end subroutine writeFileToMatrix
 
   subroutine writeResultsToFile(a, x, n)
-
+    character(len = 12) :: filename
     real, dimension(:,:), allocatable :: a
     real, dimension(:), allocatable :: x
     integer :: i, n
 
-    open(2, file = 'results.txt')
+    filename = "results.txt"
+    open(2, file = filename)
 
     a = transpose(a)
 
@@ -185,6 +189,7 @@ MODULE modulo_f
       write(2, "(a2, i0, a3, f8.4)") "x", i, "= ", x(i)
     end do
     close (2, status = 'keep')
+    !print*, "Results were written in", filename
   end subroutine writeResultsToFile
 
   !============================================================================

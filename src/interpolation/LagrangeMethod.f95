@@ -12,10 +12,11 @@ CONTAINS
     sum=0
     value=0
     degree=0
-    point=1
+    point=0
     isNotValid=.true.
 	
-	open(7, file = 'Points.txt')
+    print*, "Remeber that the points must be in Points.txt under the appropiate format. Check documentation if needed."
+	open(7, file = 'inputs/Points.txt')
   	read(7, *) n
 	
 	allocate(x(n))
@@ -32,8 +33,13 @@ CONTAINS
 	print*, "Give me the degree of the polynomial"
     read*, degree
 
-    print*, "Give me the point from which you want to start evaulating"
-    read*, point
+    DO WHILE (point < 1)
+        print*, "Give me the point from which you want to start evaulating"
+        read*, point
+        IF(point < 1) THEN
+            print*, "You can not give that value because the list of numbers starts at 1"
+        END IF
+    END DO
 	
 
 	DO WHILE (isNotValid)
@@ -42,9 +48,13 @@ CONTAINS
       	print*, "The values for degree and initial point are not valid"
 		print*, "Give me the degree of the polynomial"
     	read*, degree
-
-    	print*, "Give me the point from which you want to start evaulating"
-    	read*, point
+        DO WHILE (point < 1)
+    	    print*, "Give me the point from which you want to start evaulating"
+    	    read*, point
+            IF(point < 1) THEN
+                print*, "You can not give that value because the list of numbers starts at 1"
+            END IF
+        END DO
     ELSE
       	isNotValid=.false.
     END IF
@@ -61,7 +71,7 @@ CONTAINS
 		sum=sum+product
     end do
     
-	print*, sum
+	!print*, sum
     print*, "Result is written in LagrangeOutcome.txt"
 
     open(8, file="LagrangeOutcome.txt")
