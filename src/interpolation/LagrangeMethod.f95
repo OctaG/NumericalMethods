@@ -71,7 +71,7 @@ CONTAINS
 		sum=sum+product
     end do
     
-	!print*, sum
+	print*, sum
     print*, "Result is written in LagrangeOutcome.txt"
 
     open(8, file="LagrangeOutcome.txt")
