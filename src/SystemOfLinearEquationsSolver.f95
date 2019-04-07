@@ -30,6 +30,8 @@ module SystemOfLinearEquationsSolver
           call LU_Decomposition()
         case(3)
           print*, "Gauss-Seidel"
+          call printReminder()
+          print*, "Remember that the matrix must already be in heavy diagonal form"
           call GaussSeidel()
         case(4)
           print*, "You have left the system of linear equations solver module"
