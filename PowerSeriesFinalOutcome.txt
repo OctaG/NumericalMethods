@@ -1,1 +1,0 @@
- The result of interpolating x=   1.00000000     is P(   1.00000000     )=    0.00000000    
