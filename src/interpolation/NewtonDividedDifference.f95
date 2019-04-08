@@ -47,7 +47,7 @@ MODULE NewtonDivededDifference
             end do
         end do
 
-        print *, aux
+        !print *, aux
 
         print *, "Give me the value of x in f(x) you want to evaluate"
         read*, value
