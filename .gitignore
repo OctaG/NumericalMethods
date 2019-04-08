@@ -41,4 +41,6 @@ ErrorLog
 bin/*
 
 #Outputs
-results.txt
+*.txt
+!myData.txt
+!Points.txt

@@ -48,6 +48,7 @@ CONTAINS
       	print*, "The values for degree and initial point are not valid"
 		print*, "Give me the degree of the polynomial"
     	read*, degree
+        point = 0
         DO WHILE (point < 1)
     	    print*, "Give me the point from which you want to start evaulating"
     	    read*, point
@@ -55,6 +56,7 @@ CONTAINS
                 print*, "You can not give that value because the list of numbers starts at 1"
             END IF
         END DO
+        limit = point+degree
     ELSE
       	isNotValid=.false.
     END IF
