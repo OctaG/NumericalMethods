@@ -1,0 +1,1 @@
+ The result of interpolating x=   2.00000000     is P(   2.00000000     )=   0.675848424    

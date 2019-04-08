@@ -19,7 +19,7 @@ CONTAINS
     point=1
     isNotValid=.true.
 	
-	open(7, file = 'Points.txt')
+	open(7, file = 'inputs/Points.txt')
   	read(7, *) n
 	
 	allocate(x(n))
