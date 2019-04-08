@@ -16,9 +16,9 @@ CONTAINS
     value=0
     degree=0
     cont=1
-    point=1
+    point=0
     isNotValid=.true.
-	
+	print*, "Remeber that the points must be in Points.txt under the appropiate format. Check documentation if needed."
 	open(7, file = 'inputs/Points.txt')
   	read(7, *) n
 	
@@ -36,21 +36,33 @@ CONTAINS
 	print*, "Give me the degree of the polynomial."
     read*, degree
 
-    print*, "Give me the point from which you want to start evaulating."
-    read*, point
+    DO WHILE (point < 1)
+        print*, "Give me the point from which you want to start evaulating"
+        read*, point
+        IF(point < 1) THEN
+            print*, "You can not give that value because the list of numbers starts at 1"
+        END IF
+    END DO	
 	
 
-	DO WHILE (isNotValid)!40
+	DO WHILE (isNotValid)
     limit=point+degree
     IF((limit)>n) THEN
-      	print*, "The values for degree and initial point are not valid."
-		print*, "Give me the degree of the polynomial."
+      	print*, "The values for degree and initial point are not valid"
+		print*, "Give me the degree of the polynomial"
     	read*, degree
-
-    	print*, "Give me the point from which you want to start evaulating"
-    	read*, point
+        point=0
+        DO WHILE (point < 1)
+    	    print*, "Give me the point from which you want to start evaulating"
+    	    read*, point
+            IF(point < 1) THEN
+                print*, "You can not give that value because the list of numbers starts at 1."
+            END IF
+        END DO
+        limit=point+degree
+        print*, limit
     ELSE
-      	isNotValid=.false.!50
+      	isNotValid=.false.
     END IF
     END DO
 	
@@ -72,8 +84,6 @@ CONTAINS
 
         pointT=pointT+1
     end do
-
-    print*, matrix
     
 	allocate(aResults(degree+1))
     allocate(y2(degree+1))
@@ -82,7 +92,9 @@ CONTAINS
 		y2(cont)=y(i)
         cont=cont+1
     end do
-    print*, y2
+    
+
+
     n2=degree+1
 	call gaussP(matrix, y2, aResults, n2)
 	
@@ -110,10 +122,6 @@ SUBROUTINE gaussP(matrix, y2, aResults, n)
   real, dimension(:) :: aResults
   real:: sum
   	
-	print*, matrix
-    !matrix = transpose(matrix)
-    print*, matrix
-    print*, y2
 
   !Forward elimination
   do k = 1, n-1
@@ -137,7 +145,7 @@ SUBROUTINE gaussP(matrix, y2, aResults, n)
     aResults(i) = sum/matrix(i,i)
   end do
   
-	print*, aResults
+
 end subroutine gaussP
 
 END MODULE PowerSeriesMethod
