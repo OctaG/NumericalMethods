@@ -171,6 +171,24 @@ MODULE modulo_f
     close (1, status = 'keep')
   end subroutine writeFileToMatrix
 
+  subroutine readData(fileName, n, x, y)
+    character(len = 11) :: fileName
+    integer :: n
+    real, dimension(:), allocatable :: x
+    real, dimension(:), allocatable :: y
+
+    open(3, file = 'inputs/'//filename)
+    read(3, *) n
+
+    allocate(x(n))
+    allocate(y(n))
+
+    read(3, *) x
+    read(3, *) y
+    close (3, status = 'keep')
+
+  end subroutine readData
+
   subroutine writeResultsToFile(a, x, n)
     character(len = 12) :: filename
     real, dimension(:,:), allocatable :: a

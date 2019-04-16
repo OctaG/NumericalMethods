@@ -8,7 +8,7 @@ CC = gfortran
 
 # Define file extensions
 .SUFFIXES:
-.SUFFIXES: .f95 .o .mod 
+.SUFFIXES: .f95 .o .mod
 
 #all f95 files
 #SRC	= $(wildcard $(SRCDIR)*.f95)
@@ -54,7 +54,7 @@ $(BINDIR)%.o: $(SRCDIR)interpolation/%.f95
 	@$(CC) -c $^ -o $@ -J$(BINDIR)
 
 clean:
-	@echo Deleting binary files... 
+	@echo Deleting binary files...
 	@rm -rf $(BINDIR)
 	@rm -f $(EXECUTABLE)
 	@echo WARNING! deleting outputs ...
