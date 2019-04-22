@@ -29,7 +29,7 @@ CONTAINS
 		print*, "Give me the degree of the polynomial."
     	read*, degree
 
-        print*, "Give me the number of points you want to use. They can't be more than ", n
+        print*, "Give me the number of points you want to use. You only have ", n
     	read*, numberPoints
 
         if(numberPoints>n) then
