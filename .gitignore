@@ -44,3 +44,4 @@ bin/*
 *.txt
 !myData.txt
 !Points.txt
+!Points2.txt
