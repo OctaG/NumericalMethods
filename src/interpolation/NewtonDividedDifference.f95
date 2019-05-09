@@ -8,8 +8,9 @@ MODULE NewtonDivededDifference
         real, dimension(:), allocatable::x
         real, dimension(:), allocatable::y
         real, dimension(:,:), allocatable :: aux
-        integer:: n, i, j
-        ! logical:: isNotValid
+        integer:: n, i, j, degree
+        logical:: isNotValid = .false.
+
         ! sum=0
         ! value=0
         ! degree=0
@@ -52,8 +53,18 @@ MODULE NewtonDivededDifference
         print *, "Give me the value of x in f(x) you want to evaluate"
         read*, value
 
+        degree = -1
+        do while(degree <= 0 .or. degree > (n - 1))
+            print*, "Give me the degree of the polynomial"
+            read*, degree
+            if (degree <= 0 .or. degree > (n - 1)) then
+                print *, "Degree must be 0 < degree < (n-1)"
+            end if
+        end do
+
+
         sum = y(1)
-        do i = 1, n-1, 1
+        do i = 1, degree, 1
             mtemp = aux(i,1)
             do j = 1, i, 1
                 !print *, "x", j

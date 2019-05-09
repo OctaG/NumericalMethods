@@ -20,27 +20,29 @@ CONTAINS
       
       print*, "Valid Interval. Operations may proceed"
       DO WHILE (iter < max)
-      iter = iter + 1
-      cAnterior = c
-       c = b - (((fb)*(a-b))/(fa-fb))
-      fc = funcion(c)
-      error_relativo = calcularErrorRelativo(c, cAnterior)
-        IF(error_relativo <= tolerancia) THEN
-          call output(c, iter)
-          exit
-        ELSE IF(fa * fc > 0) THEN
-          a = c
-          !This minimizes function evaluation
-          fa = fc
-        ELSE
-          b = c
-          fb = fc
-        END IF
+        iter = iter + 1
+        cAnterior = c
+        c = b - (((fb)*(a-b))/(fa-fb))
+        fc = funcion(c)
+        error_relativo = calcularErrorRelativo(c, cAnterior)
+          IF(error_relativo <= tolerancia) THEN
+            call output(c, iter)
+            exit
+          ELSE IF(fa * fc > 0) THEN
+            a = c
+            !This minimizes function evaluation
+            fa = fc
+          ELSE
+            b = c
+            fb = fc
+          END IF
        END DO
+
       IF(iter == max) THEN
         print*, "Maximum number of operations reached"
         print*,"Approximated value found: ", value
       END IF
+
     END IF
   END SUBROUTINE FalsePosition
 END MODULE FalsePositionMethod
