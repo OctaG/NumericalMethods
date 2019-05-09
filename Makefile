@@ -1,4 +1,4 @@
-﻿# := indicar que no cambie aun si después se modifica
+# := indicar que no cambie aun si después se modifica
 BINDIR := bin/
 SRCDIR := src/
 #OUTPUTDIR := out/
@@ -20,7 +20,7 @@ OBJS := $(BINDIR)modulo_f.o $(BINDIR)BisectionMethod.o $(BINDIR)FalsePositionMet
 	$(BINDIR)SecanteMethod.o $(BINDIR)GaussianEliminationMethod.o $(BINDIR)LU_DecompositionMethod.o $(BINDIR)GaussSeidelMethod.o \
 	$(BINDIR)PowerSeriesMethod.o $(BINDIR)LagrangeMethod.o $(BINDIR)NewtonDividedDifference.o \
 	$(BINDIR)RootFindingMethods.o $(BINDIR)SystemOfLinearEquationsSolver.o $(BINDIR)InterpolationMethods.o \
-	$(BINDIR)PRMethod.o $(BINDIR)Main.o 
+	$(BINDIR)PRMethod.o $(BINDIR)Main.o
 
 # Build rules
 all: banner | program #esto se ejecuta solo con decir make
