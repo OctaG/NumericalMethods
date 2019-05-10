@@ -1,3 +1,5 @@
+#$(BINDIR)EulerMethod.o $(BINDIR)ModifiedEulerMethod.o $(BINDIR)RungeKutta3Method.o $(BINDIR)RungeKutta4Method.o \
+$(BINDIR)OrdinaryDiffEquationsMethods.o 
 # := indicar que no cambie aun si después se modifica
 BINDIR := bin/
 SRCDIR := src/
@@ -20,7 +22,8 @@ OBJS := $(BINDIR)modulo_f.o $(BINDIR)BisectionMethod.o $(BINDIR)FalsePositionMet
 	$(BINDIR)SecanteMethod.o $(BINDIR)GaussianEliminationMethod.o $(BINDIR)LU_DecompositionMethod.o $(BINDIR)GaussSeidelMethod.o \
 	$(BINDIR)PowerSeriesMethod.o $(BINDIR)LagrangeMethod.o $(BINDIR)NewtonDividedDifference.o \
 	$(BINDIR)RootFindingMethods.o $(BINDIR)SystemOfLinearEquationsSolver.o $(BINDIR)InterpolationMethods.o \
-	$(BINDIR)PRMethod.o $(BINDIR)Main.o
+	$(BINDIR)PRMethod.o \
+	$(BINDIR)Main.o
 
 # Build rules
 all: banner | program #esto se ejecuta solo con decir make
@@ -55,6 +58,9 @@ $(BINDIR)%.o: $(SRCDIR)interpolation/%.f95
 	@$(CC) -c $^ -o $@ -J$(BINDIR)
 
 $(BINDIR)%.o: $(SRCDIR)regression/%.f95
+	@$(CC) -c $^ -o $@ -J$(BINDIR)
+
+$(BINDIR)%.o: $(SRCDIR)ordinary_diff_eqts/%.f95
 	@$(CC) -c $^ -o $@ -J$(BINDIR)
 
 clean:

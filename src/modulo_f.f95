@@ -219,4 +219,29 @@ MODULE modulo_f
 
   !============================================================================
 
+  !========================== Ord Diff Equations ==============================
+
+  function fdexy(x,y)
+  		real::fdexy
+      real::x
+      real::y
+      !Se debe cambiar manualmente dependiendo el problema
+      fdexy  = -2*(x**3) + 12*(x**2) -20*x +8.5
+  end function
+
+
+  subroutine in_data(numinterval, tol, a, b, fa, fixed, maxits)
+      integer:: numinterval
+      real:: tol
+      real:: a
+      real:: b
+      real:: fa
+      integer:: fixed
+      integer:: maxits
+      print*, "Give me number of intervals, tolerance, a, b, f(a), fixed, Max iterations"
+      read*, numinterval, tol, a, b, fa, fixed, maxits
+  end subroutine
+
+  !============================================================================
+
 END MODULE modulo_f

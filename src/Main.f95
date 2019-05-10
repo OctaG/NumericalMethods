@@ -4,6 +4,7 @@ PROGRAM Main
   use RootFindingMethods
   use SystemOfLinearEquationsSolver
   use InterpolationMethods
+  use OrdinaryDiffEquationsMethods
 
   integer:: option
 
@@ -26,7 +27,10 @@ PROGRAM Main
     case (3)
       print *, "Interpolation"
       call Interpolation()
-    case (4)
+    case (6)
+      print*, "Ordinary Differential Equations"
+      call OrdinaryDifferentialEquations()
+    case (7)
       print*, "Good Bye"
       print*, "A happy face before you leave: =)"
     case default
