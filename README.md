@@ -1,74 +1,153 @@
-# Numerical Methods
-Fortran project with the implementation of different numerical methods
+---
+title: Numerical Methods in Fortran
+fontsize: 12pt
+---
+\tableofcontents
+\newpage
 
-## Set up
+# Implemented Methods
+
+In this proyect you can find:
+
+1. **Solution of Non Linear Equations**
+    a. Bisection Method
+    b. False Position Method
+    c. Newton Raphson Method
+    d. Secant Method
+2. **Solution of Systems of Linear Equations**
+    a. Gaussian Elimination
+    b. LU Decomposition
+    c. Gauss-Seidel
+3. **Interpolation**
+    a. Power Series Method
+    b. Lagrange
+    c. Newton Divided Differences
+4. **Regression**
+    a. Polynomial Regression (including linear regression)
+    b. Exponential Regression
+    c. Logarithmic Regression
+5. **Numerical Integration**
+    a. Trapezoidal Rule
+    b. Simpson 1/3
+    c. Simpson 3/8
+6. **Solution of Ordinary Differential**
+    a. Euler Method
+    b. Modified Euler
+    c. Runge Kutta 3rd order
+    d. Runge Kutta 4th order
+
+\newpage
+
+# How to Set Up
 
 **To compile:**
+
 1. Change the current working directory to the project's location :
-
-   a. `$ cd NumericalMethods`
-
+    a. `$ cd NumericalMethods`
 2. Then you have two options to compile:
-
-   a. `$ make all`
-
-   b. `$ make`
+    a. `$ make all`
+    b. `$ make`
 
 *note: if you change the functions in `functions.f95` you have to run the command to compile again*
 
 **To run the executable file:**
+
 1. Change the current working directory to the project's location and after compile it
-2. `$ ./methods.out`
+    a. `$ ./methods.out`
 
 **To clean binary files**
+
 a. `$ make clean`
 
-## Data inputs
-Inputs files are in directory `inputs`
+# How to Use
+Inputs files are in directory `inputs/`
+*Note: The numbers must be separated by spaces*
 
-### System Of Linear Equations
+\newpage
 
-####What do Gauss Elimination, LU Decomposition and Gauss-Seidel need to work?
 
-The only thing that the three programs need to work is correctly is that `myData.txt` contains the data of the
-system of equations in a matrix format. You must ensure that it is written in the correct format.
+## Solution of Non Linear Equations
 
-####How can I update the data of the system of equations I want to solve? What is the appropiate format?
-1. Open `myData.txt`
-2. The appropiate format of the data is as follows:
--  $n$ (This is the number of colums and rows of matrix $[A]$)
--  $a_{1,1}\:a_{1,2}\;...\:a_{1,n}$
+**Methods Included:** Bisection Method, False Position Method, Newton Raphson Method, Secant Method
 
-   $a_{2,1}\:a_{2,2}\:...\:a_{2,n}$
-   .
+**Required file:** `functions.f95`
 
-   .
+**Format:** The equation must be written in frontan sintax
 
-   .
+**Aditional input:** Two points $[a,b]$ that enclose the root of the function. The relative tolerance error $t$ in percentage $(0 < t < 1)$ and the maximum number of iterations $n$.
 
-   $a_{n,1}\:a_{n,2}\:...\:a_{n,n}$
+**Output:** Root found $x$ after reach maximun number of iterations or the tolerance.
 
--  $b1\:b2\:...\:b_{n}$
-3. The numbers must be separated by spaces
+*Note: recall that you have to compile again*
 
-#### Where can I find my the results of my system of equations?
-The results will be saved in `results.txt`
-The resulting matrix $[A]$ will appear first, followed by the results of $X_1$ to $X_n$
+\newpage
 
-### Interpolation
+## System Of Linear Equations
 
-**How to use Power Series and Lagrange**
-1. Both programs read the points from a text file called `Points.txt`
-2. The appropiate format of the data is as follows:
--  $n$ (This is the number of points)
--  $x_1,\:x_2,\:x_3,\:...,\:x_n$
--  $y_1,\:y_2,\:y_3,\:...,\:y_n$
+**Methods Included:** Gauss Elimination, LU Decomposition and Gauss-Seidel
 
-3. The numbers must be separated by spaces.
-4. Both programs: the user will be asked for the value of $x$ that they want to use, then they will be asked for the order of the polynomial and, finally,
+**Required file:** `myData.txt`
+
+**Format:**
+
+The appropiate format of the data is as follows:
+
+$n$
+
+$a_{1,1}\:a_{1,2}\;...\:a_{1,n}$
+
+$a_{2,1}\:a_{2,2}\:...\:a_{2,n}$
+
+.
+
+.
+
+.
+
+$a_{n,1}\:a_{n,2}\:...\:a_{n,n}$
+
+$b_1\:b_2\:...\:b_{n}$
+
+Where $\boldsymbol{n}$ is the number of columns and rows of matrix $\boldsymbol{[A]}$, followed by $\boldsymbol{a_i}$ numbers in the matrix and finally $\boldsymbol{b_i}$ numbers of the matrix $\boldsymbol{[B]}$.
+
+**Aditional input:** None
+
+**Output:** The resulting matrix $[A]$ will appear first, followed by the results of $X_1$ to $X_n$
+
+\newpage
+
+## Interpolation
+
+**Methods Included:** Power Series Method, Lagrange, Newton Divided Differences
+
+**Required file:** `Points.txt`
+
+**Format:**
+
+The appropiate format of the data is as follows:
+$n$
+$x_1,\:x_2,\:x_3,\:...,\:x_n$
+$y_1,\:y_2,\:y_3,\:...,\:y_n$
+
+Where $\boldsymbol{n}$ is the number of points, followed by the pairs of numbers that represents the points.
+
+**Aditional input:**  The value of $x$ that they want to use, then they will be asked for the order of the polynomial and, finally,
 the user will be asked for the point from which they want to start the evaluation.
 
-#### How do the Power Series and Lagrange programs work?
-1. The LagrangeMethod program works like a function and it can work without the need of other programs. It only needs the `Points.txt` text file. It writes the final results.
-in the `LagrangeOutcome.txt`
-2. The PowerSeriesMethod program needs the GaussforPower program in order to get the solution of the matrix that it creates. After the GaussforPower program is done solving the matrix of the PowerSeriesMethod program (the matrix is saved in `PowerSeriesMatrix.txt` and the solution of the matrix in `ResultsPowerSeries.txt`), the Power Series program reads the solution and writes the final result in the `PowerSeriesFinalOutcome.txt`
+**Output:** Something
+
+\newpage
+
+## Sample
+
+**Methods Included:** something
+
+**Required file:** `Points.txt`
+
+**Format:**
+
+**Aditional input:** None
+
+**Output:** Something
+
+\newpage

@@ -45,3 +45,6 @@ bin/*
 !myData.txt
 !Points.txt
 !Points2.txt
+
+#Documentation
+*pdf
