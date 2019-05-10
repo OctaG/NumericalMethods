@@ -17,15 +17,16 @@ CONTAINS
       !Saves the function evaluated in a to be used later
       fa = funcion(a)
       fb = funcion(b)
-      
+
       print*, "Valid Interval. Operations may proceed"
       DO WHILE (iter < max)
         iter = iter + 1
         cAnterior = c
         c = b - (((fb)*(a-b))/(fa-fb))
         fc = funcion(c)
-        error_relativo = calcularErrorRelativo(c, cAnterior)
-          IF(error_relativo <= tolerancia) THEN
+        !error_relativo = calcularErrorRelativo(c, cAnterior)
+        error_absoluto = calcularErrorAbsoluto(c)
+          IF(error_absoluto <= tolerancia) THEN
             call output(c, iter)
             exit
           ELSE IF(fa * fc > 0) THEN

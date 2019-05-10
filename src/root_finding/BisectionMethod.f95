@@ -5,7 +5,7 @@ CONTAINS
 
   SUBROUTINE Bisection()
     real:: a, b, c, fa, fb, fc, cAnterior, tolerancia
-    integer:: iter, max !iter works as a conter 
+    integer:: iter, max !iter works as a conter
     logical:: isInterval
 
     iter = 0
@@ -20,10 +20,11 @@ CONTAINS
       DO WHILE (iter < max)
       iter = iter + 1
       cAnterior = c
-       c = (a + b) / 2
+      c = (a + b) / 2
       fc = funcion(c)
-      error_relativo = calcularErrorRelativo(c, cAnterior)
-        IF(error_relativo <= tolerancia) THEN
+      !error_relativo = calcularErrorRelativo(c, cAnterior)
+      error_absoluto = calcularErrorAbsoluto(c)
+        IF(error_absoluto <= tolerancia) THEN
           call output(c, iter)
           exit
         ELSE IF(fa * fc > 0) THEN

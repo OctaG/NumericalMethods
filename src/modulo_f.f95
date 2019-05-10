@@ -9,21 +9,23 @@ MODULE modulo_f
     FUNCTION funcion(x)
       real:: funcion !Knows that a real will be returned
       real:: x
-      funcion = 5+2*x-3*x**2+4*x**3
+      !funcion = 10064.83528*x**3+1.5*x-123.070038
+      funcion = -0.0001237*x**5+0.0239*x**4-1.3246*x**3+21.2087*x**2-178.7351*x-227.5431
     END FUNCTION funcion
 
     !This should be the derivative of the function above
     FUNCTION funcionDerivada(x)
       real:: funcionDerivada
       real:: x
-      funcionDerivada = 2-6*x+12*x**2
+      funcionDerivada = 6*0.000008926*x**5+5*0.00141813*x**4-4*0.0767458*x**3+3*1.75*x**2-222.4*x
     END FUNCTION funcionDerivada
 
 
    FUNCTION funcionIntegral(x)
       real:: funcionIntegral !Knows that a real will be returned
       real:: x
-      funcionIntegral = 5+2*x-3*x**2+4*x**3
+      real:: PI = 4.D0*DATAN(1.D0)
+      funcionIntegral = (1/sqrt(2*PI)) * exp(-0.5*x**2)
     END FUNCTION funcionIntegral
 
     ! This should print the function of above, in a way easy to read
@@ -44,6 +46,12 @@ MODULE modulo_f
         calcularErrorRelativo = (ABS((xNew - xOld) / xNew)) * 100
       END IF
     END function calcularErrorRelativo
+
+    FUNCTION calcularErrorAbsoluto(x)
+      real:: calcularErrorAbsoluto
+      real:: x
+        calcularErrorAbsoluto = ABS(funcion(x))
+    END function calcularErrorAbsoluto
 
 
     SUBROUTINE askForStopValues(tolerancia, max)

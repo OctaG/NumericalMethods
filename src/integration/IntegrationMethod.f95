@@ -56,7 +56,7 @@ CONTAINS
 		end if
 
 
-	
+
 	end subroutine Simpson13
 
     subroutine Simpson38()
@@ -112,7 +112,7 @@ CONTAINS
           	print *,'Max iterations passed. Integral = ', sum
 		end if
 
-	
+
 	end subroutine Simpson38
 
 
@@ -170,7 +170,7 @@ CONTAINS
           	print *,'Max iterations passed. Integral = ', sum
 		end if
 
-	
+
 	end subroutine Trapezoidal
 
     function Simpson13m(h, cont, p)
@@ -218,5 +218,5 @@ CONTAINS
 
     end function Trapm
 
-    
+
 END MODULE IntegrationMethod

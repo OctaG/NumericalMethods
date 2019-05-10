@@ -8,7 +8,7 @@ MODULE NewtonMethod
       logical:: derivativeIsOk = .false.
 
       iter = 0
-      
+
       call askForOneInput(x1)
       call checkDerivative(x1, derivativeIsOk)
 
@@ -23,9 +23,10 @@ MODULE NewtonMethod
           value_ant = x1
           value = x1 - (fx/fx_prime)
 
-          error_relativo = calcularErrorRelativo(value, value_ant)
+          !error_relativo = calcularErrorRelativo(value, value_ant)
+          error_absoluto = calcularErrorAbsoluto(value)
 
-          IF(error_relativo <= tolerancia) THEN
+          IF(error_absoluto <= tolerancia) THEN
             call output(value, iter)
             exit
           ELSE
