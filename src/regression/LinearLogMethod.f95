@@ -1,18 +1,19 @@
-MODULE LinearMethod
+MODULE LinearLogMethod
 
 CONTAINS
 
-	subroutine Linear()
+	subroutine LinearLog()
 
-	  real:: sumX = 0, sumY = 0, sumXY = 0, sumXX = 0, avgX = 0, avgY = 0, a0 = 0, a1 = 0, sumSr = 0, sumSt = 0, rSquared = 0, r = 0, pointToEvaluate
+	real:: sumLnX = 0, sumLnY=0, sumLnXLnY=0, sumLnX2 = 0, avgX = 0, avgY = 0, a0 = 0, a1 = 0
+    real:: sumSr = 0, sumSt = 0, rSquared = 0, r, pointToEvaluate
     real, dimension(:), allocatable :: x
     real, dimension(:), allocatable :: y
-	  integer:: n, i, startPoint=0, numberPoints, cont=1, answer
-      logical::isNotValid=.true., state=.true.
+	integer:: n, i, startPoint=0, numberPoints=0, answer
+    logical:: state=.true.
 
 
-    print*, "Remember that the points must be in Points.txt under the appropiate format. Check documentation if needed."
-	  open(7, file = 'inputs/Points2.txt')
+    print*, "Remember that the points must be in Points3.txt under the appropiate format. Check documentation if needed."
+	  open(7, file = 'inputs/Points3.txt')
   	read(7, *) n
 
 	  allocate(x(n))
@@ -44,55 +45,55 @@ CONTAINS
 
         print*, startPoint
         print*, numberPoints
-
-        sumX=0
-        sumY=0
-        sumXX=0
-        sumXY=0
+		
+		sumLnX=0
+        sumLnY=0
+        sumLnXLnY=0
+        sumLnX2=0
         sumSr=0
         sumSt=0
-
 		 do i = startPoint, (startPoint+numberPoints-1)
-			 sumX = sumX + x(i)
-			 sumY = sumY + y(i)
-			 sumXY = sumXY + (x(i) * y(i))
-			 sumXX = sumXX + (x(i) * x(i))
+			 sumLnX = sumLnX + log(x(i))
+			 sumLnY = sumLnY + log(y(i))
+			 sumLnXLnY = sumLnXLnY + (log(x(i)) * log(y(i)))
+			 sumLnX2 = sumLnX2 + (log(x(i)) * log(x(i)))
 		end do
 
-		avgX = sumX/numberPoints
-		avgY = sumY/numberPoints
+		avgX = sumLnX/numberPoints
+		avgY = sumLnY/numberPoints
 
-		a1 = ((numberPoints * sumXY) - (sumX * sumY))/((numberPoints * sumXX) - (sumX)**2)
+		a1 = ((numberPoints * sumLnXLnY) - (sumLnX * sumLnY))/((numberPoints * sumLnX2) - (sumLnX)**2)
 		a0 = avgY - (a1 * avgX)
 
 		do i = startPoint, (startPoint+numberPoints-1)
-			sumSr = sumSr + (y(i) - (a0 + a1*x(i)))**2
-			sumSt = sumSt + (y(i)- avgY)**2
+			sumSr = sumSr + (log(y(i)) - (a0 + a1*log(x(i))))**2
+			sumSt = sumSt + (log(y(i))- avgY)**2
 		end do
 
 		rSquared = ABS((sumSt - sumSr) / sumSt)
 		r = SQRT(rSquared)
 
-		print*, "The equation is: ", a0, " + ", a1, "x"
+		print*, "The equation for the linear regression is: ", a0, " + ", a1, "x"
 		print*, "Sr, St, r2, r: ", sumSr, sumSt, rSquared, r
+        print*, "The new power equation is: ", exp(a0), " * x^( ", a1, " )"
 
         do while (state)
-        print*, "Do you want to evaulate a point with the new function? (Y=1/N=0, input a number)"
+        print*, "Do you want to evaulate a point with the new power function? (Y=1/N=0, input a number)"
         read*, answer
         if(answer==1)then
         print*, "Give me the point you want to evaluate."
         read*, pointToEvaluate
-        print*, "R(x)=", (a0+(pointToEvaluate*a1))
+        print*, "R(x)=", (exp(a0)*pointToEvaluate**(a1))
         else
 			state=.false.
         end if
 		end do
 
 		state=.true.
-        isNotValid=.true.
         numberPoints=0
         startPoint=0
-        pointToEvaluate=0
-	end subroutine Linear
+        a0=0
+        a1=0
+	end subroutine LinearLog
 
-END MODULE LinearMethod
+END MODULE LinearLogMethod
