@@ -16,11 +16,14 @@ CC = gfortran
 #OBJS	= $(addprefix $(BINDIR), $(_OBJS))
 
 #en orden de compilacion
-OBJS := $(BINDIR)modulo_f.o $(BINDIR)BisectionMethod.o $(BINDIR)FalsePositionMethod.o $(BINDIR)NewtonMethod.o \
-	$(BINDIR)SecanteMethod.o $(BINDIR)GaussianEliminationMethod.o $(BINDIR)LU_DecompositionMethod.o $(BINDIR)GaussSeidelMethod.o \
+OBJS := $(BINDIR)modulo_f.o \
+	$(BINDIR)BisectionMethod.o $(BINDIR)FalsePositionMethod.o $(BINDIR)NewtonMethod.o $(BINDIR)SecanteMethod.o \
+	$(BINDIR)GaussianEliminationMethod.o $(BINDIR)LU_DecompositionMethod.o $(BINDIR)GaussSeidelMethod.o \
 	$(BINDIR)PowerSeriesMethod.o $(BINDIR)LagrangeMethod.o $(BINDIR)NewtonDividedDifference.o \
-	$(BINDIR)RootFindingMethods.o $(BINDIR)SystemOfLinearEquationsSolver.o $(BINDIR)InterpolationMethods.o \
-	$(BINDIR)PRMethod.o $(BINDIR)Main.o
+	$(BINDIR)LinearMethod.o $(BINDIR)PRMethod.o $(BINDIR)LinearLogMethod.o $(BINDIR)LinearExponentialMethod.o \
+	$(BINDIR)IntegrationMethod.o \
+	$(BINDIR)RootFindingMethods.o $(BINDIR)SystemOfLinearEquationsSolver.o $(BINDIR)InterpolationMethods.o $(BINDIR)RegressionMethods.o $(BINDIR)IntegrationMethods.o \
+	$(BINDIR)Main.o
 
 # Build rules
 all: banner | program #esto se ejecuta solo con decir make
@@ -55,6 +58,9 @@ $(BINDIR)%.o: $(SRCDIR)interpolation/%.f95
 	@$(CC) -c $^ -o $@ -J$(BINDIR)
 
 $(BINDIR)%.o: $(SRCDIR)regression/%.f95
+	@$(CC) -c $^ -o $@ -J$(BINDIR)
+
+$(BINDIR)%.o: $(SRCDIR)integration/%.f95
 	@$(CC) -c $^ -o $@ -J$(BINDIR)
 
 clean:

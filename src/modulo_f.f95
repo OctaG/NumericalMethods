@@ -19,6 +19,13 @@ MODULE modulo_f
       funcionDerivada = 2-6*x+12*x**2
     END FUNCTION funcionDerivada
 
+
+   FUNCTION funcionIntegral(x)
+      real:: funcionIntegral !Knows that a real will be returned
+      real:: x
+      funcionIntegral = 5+2*x-3*x**2+4*x**3
+    END FUNCTION funcionIntegral
+
     ! This should print the function of above, in a way easy to read
     SUBROUTINE funcionHumanize()
       print *, "Current function: ","4x^3 - 3x^2 + 2x + 5"

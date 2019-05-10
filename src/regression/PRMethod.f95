@@ -15,10 +15,10 @@ CONTAINS
 	integer:: n, i, degree, size, j, k, k2, startPoint=0, numberPoints, cont=1, answer
 	logical::isNotValid=.true., state=.true.
 
-    print*, "Remeber that the points must be in Points2.txt under the appropiate format. Check documentation if needed."
+    print*, "Remember that the points must be in Points2.txt under the appropiate format. Check documentation if needed."
 	open(7, file = 'inputs/Points2.txt')
   	read(7, *) n
-
+    
 	allocate(x(n))
   	allocate(y(n))
 
@@ -29,7 +29,7 @@ CONTAINS
 		print*, "Give me the degree of the polynomial."
     	read*, degree
 
-        print*, "Give me the number of points you want to use. You only have ", n
+        print*, "Give me the number of points you want to use. They can't be more than ", n
     	read*, numberPoints
 
         if(numberPoints>n) then
@@ -69,6 +69,9 @@ CONTAINS
         allocate(b(size))
 		allocate(xSum(degree*2))
 		allocate(newPoints(numberPoints))
+
+        sumY=0
+        newPoint=0
 
         do i = startPoint, (startPoint+numberPoints-1)
 			 sumY = sumY + y(i)
@@ -111,13 +114,8 @@ CONTAINS
             k=k+1
         end do
 
-		!print*, matrix
-
-        !print*, b
-
         call gaussP(matrix, b, aResults, size)
 		
-		!print*, aResults
 
         do i = startPoint, (startPoint+numberPoints-1)
           	do j=1, size
@@ -130,23 +128,35 @@ CONTAINS
             !print*, cont
         end do
         cont=1
-		!print*, newPoints
-
+		
+		sumSr=0
+		sumSt=0
+        rSquared=0
+        r=0
+        
+        !print*, sumSr
+        !print*, sumSt
+        !print*, newPoints
         do i = startPoint, (startPoint+numberPoints-1)
 			sumSr = sumSr + (y(i) - (newPoints(cont)))**2
 			sumSt = sumSt + (y(i)- avgY)**2
             cont=cont+1
 		end do
-
+	
+		!print*, sumSr
+        !print*, sumSt
+        !print*, avgY
+        
 		rSquared = ABS((sumSt - sumSr) / sumSt)
 		r = SQRT(rSquared)
 		
-		print*, "The A's from A0 to An are "
+		print*, "Remember that equations have the form: A0 + A1x^1 + ... + Anx^n"
+		print*, "The A's from A0 to An of the polynomial regression are "
 		print*, aResults
-        print*, "The correlation coefficient is: ", r
+        print*, "Sr, St, r2, r: ", sumSr, sumSt, rSquared, r
         
 		do while (state)
-        print*, "Do you want to evaulate a point with the new function? (Y=1/N=0, input a number)"
+        print*, "Do you want to evaulate a point with the new equation? (Y=1/N=0, input a number)"
         read*, answer
         if(answer==1)then
         print*, "Give me the point you want to evaluate."
@@ -162,7 +172,10 @@ CONTAINS
 
 		startPoint=0
         cont=1
+        state=.true.
+        isNotValid=.true.
 	end subroutine PRegression
+
 
     SUBROUTINE gaussP(matrix, y2, aResults, n)
   integer:: n

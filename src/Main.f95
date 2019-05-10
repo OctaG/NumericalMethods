@@ -4,6 +4,8 @@ PROGRAM Main
   use RootFindingMethods
   use SystemOfLinearEquationsSolver
   use InterpolationMethods
+  use RegressionMethods
+  use IntegrationMethods
 
   integer:: option
 
@@ -13,7 +15,8 @@ PROGRAM Main
   do while(option /= 4) ! not equal
 
     print*, "MAIN MENU"
-    print*, "Select one option [1: Root Finding | 2: System Of Linear Equations Solver | 3: Interpolation | 4: Exit] "
+    print*, "Select one option [1: Root Finding | 2: System Of Linear Equations Solver | "
+    print *,"3: Interpolation | 4: Regression| 5:inte |6: Exit] "
     read*, option
 
     select case(option)
@@ -27,6 +30,12 @@ PROGRAM Main
       print *, "Interpolation"
       call Interpolation()
     case (4)
+      print *, "Regression"
+      call Regression()
+    case (5)
+      print *, "Integration"
+      call Integration()
+    case (6)
       print*, "Good Bye"
       print*, "A happy face before you leave: =)"
     case default
