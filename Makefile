@@ -22,7 +22,8 @@ OBJS := $(BINDIR)modulo_f.o \
 	$(BINDIR)PowerSeriesMethod.o $(BINDIR)LagrangeMethod.o $(BINDIR)NewtonDividedDifference.o \
 	$(BINDIR)LinearMethod.o $(BINDIR)PRMethod.o $(BINDIR)LinearLogMethod.o $(BINDIR)LinearExponentialMethod.o \
 	$(BINDIR)IntegrationMethod.o \
-	$(BINDIR)RootFindingMethods.o $(BINDIR)SystemOfLinearEquationsSolver.o $(BINDIR)InterpolationMethods.o $(BINDIR)RegressionMethods.o $(BINDIR)IntegrationMethods.o \
+	$(BINDIR)EulerMethod.o $(BINDIR)ModifiedEulerMethod.o $(BINDIR)RungeKutta3Method.o $(BINDIR)RungeKutta4Method.o \
+	$(BINDIR)RootFindingMethods.o $(BINDIR)SystemOfLinearEquationsSolver.o $(BINDIR)InterpolationMethods.o $(BINDIR)RegressionMethods.o $(BINDIR)IntegrationMethods.o $(BINDIR)OrdinaryDiffEquationsMethods.o \
 	$(BINDIR)Main.o
 
 # Build rules
@@ -61,6 +62,9 @@ $(BINDIR)%.o: $(SRCDIR)regression/%.f95
 	@$(CC) -c $^ -o $@ -J$(BINDIR)
 
 $(BINDIR)%.o: $(SRCDIR)integration/%.f95
+	@$(CC) -c $^ -o $@ -J$(BINDIR)
+
+$(BINDIR)%.o: $(SRCDIR)ordinary_diff_eqts/%.f95
 	@$(CC) -c $^ -o $@ -J$(BINDIR)
 
 clean:

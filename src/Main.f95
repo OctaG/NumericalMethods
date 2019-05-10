@@ -6,17 +6,23 @@ PROGRAM Main
   use InterpolationMethods
   use RegressionMethods
   use IntegrationMethods
+  use OrdinaryDiffEquationsMethods
 
   integer:: option
 
   print*, "Welcome to this very cool program"
 
   !This is the menu for all the different methods
-  do while(option /= 4) ! not equal
+  do while(option /= 7) ! not equal
 
     print*, "MAIN MENU"
-    print*, "Select one option [1: Root Finding | 2: System Of Linear Equations Solver | "
-    print *,"3: Interpolation | 4: Regression| 5:inte |6: Exit] "
+    print*, "Select one option [ 1: Root Finding ] |"
+    print*, "| [2: System Of Linear Equations Solver] | "
+    print*, "| [3: Interpolation] |"
+    print*, "| [4: Regression] |"
+    print*, "| [5: Integration] |" 
+    print*, "| [6: Ordinary Differential Equations] |"
+    print*, "| [7: Exit] |"
     read*, option
 
     select case(option)
@@ -36,6 +42,9 @@ PROGRAM Main
       print *, "Integration"
       call Integration()
     case (6)
+      print*, "Ordinary Differential Equations"
+      call OrdinaryDifferentialEquations()
+    case (7)
       print*, "Good Bye"
       print*, "A happy face before you leave: =)"
     case default
