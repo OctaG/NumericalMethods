@@ -1,4 +1,6 @@
 MODULE PowerSeriesMethod
+    use files
+    use modulo_f
 
 CONTAINS
 
@@ -18,53 +20,11 @@ CONTAINS
     cont=1
     point=0
     isNotValid=.true.
-	print*, "Remeber that the points must be in Points.txt under the appropiate format. Check documentation if needed."
-	open(7, file = 'inputs/Points.txt')
-  	read(7, *) n
-	
-	allocate(x(n))
-  	allocate(y(n))
-
-    read(7, *) x
-    read(7, *) y
-
-	close(7)
     
-	print*, "Give me the point you want evaluated."
-    read*, value
-
-	print*, "Give me the degree of the polynomial."
-    read*, degree
-
-    DO WHILE (point < 1)
-        print*, "Give me the point from which you want to start evaulating"
-        read*, point
-        IF(point < 1) THEN
-            print*, "You can not give that value because the list of numbers starts at 1"
-        END IF
-    END DO	
-	
-
-	DO WHILE (isNotValid)
-    limit=point+degree
-    IF((limit)>n) THEN
-      	print*, "The values for degree and initial point are not valid"
-		print*, "Give me the degree of the polynomial"
-    	read*, degree
-        point=0
-        DO WHILE (point < 1)
-    	    print*, "Give me the point from which you want to start evaulating"
-    	    read*, point
-            IF(point < 1) THEN
-                print*, "You can not give that value because the list of numbers starts at 1."
-            END IF
-        END DO
-        limit=point+degree
-        print*, limit
-    ELSE
-      	isNotValid=.false.
-    END IF
-    END DO
+    print*, "Remeber that the points must be in Points.txt under the appropiate format. Check documentation if needed."
+    call readPoints(x,y,n)
+    
+	call askForPoints(value, degree, point)
 	
 	size=degree+1
 
@@ -109,9 +69,7 @@ CONTAINS
     print*, resultP
     print*, "Result written in PowerSeriesFinalOutcome.txt"
 
-    open(11, file="PowerSeriesFinalOutcome.txt")
-    write(11, *) "The result of interpolating x=", value, "is P(", value, ")= ", resultP
-    close(11)
+    call resultToFileINTERPOLATION(value, sum)
 
 END SUBROUTINE PowerSeries
 
