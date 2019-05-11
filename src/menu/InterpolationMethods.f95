@@ -16,18 +16,27 @@ module InterpolationMethods
       print*, "Here you can choose between 3 amazing numerical methods to interpolate data"
 
       do while(option /= 4)
-        print*, "Select one option [1: Power Series | 2: Lagrange | 3: Newton-Divided Differences | 4: Back to menu] "
+        print *, "=== Interpolation ==="
+        print*,""
+        print*, "Select one option"
+        print*, " [ 1: Power Series ]"
+        print*, " [ 2: Lagrange ]"
+        print*, " [ 3: Newton-Divided Differences ]"
+        print*, " [ 4: Back to menu ] "
         read*, option
-
+        call system('clear')
         select case(option)
         case (1)
           print*, "Power Series"
+          call printReminder()
           call PowerSeries()
         case(2)
-        	print*, "Lagrange"
+          print*, "Lagrange"
+          call printReminder()
           call Lagrange()
         case(3)
           print*, "Newton-Divided Differences"
+          call printReminder()
           call NewtonDivided()
         case(4)
           print*, "You have left the interpolation module"
@@ -38,4 +47,9 @@ module InterpolationMethods
       end do
     end subroutine Interpolation
 
+    subroutine printReminder()
+      print*, "-- Remeber that the points must be in Points.txt under the appropiate format."
+      print*, "-- Check documentation if needed."
+      print*,""
+    end subroutine printReminder
 end module InterpolationMethods

@@ -27,4 +27,33 @@ module functions
 
     ! =====================================================================================
 
+
+
+    !============================== Integration ==================================
+    ! This function will be used for Integrations Methods
+    ! ()
+
+    FUNCTION funcionIntegral(x)
+        real:: funcionIntegral !Knows that a real will be returned
+        real:: x
+        real, parameter:: PI = 4.D0*DATAN(1.D0)
+        funcionIntegral = (1/sqrt(2*PI)) * exp(-0.5*x**2)
+    END FUNCTION funcionIntegral
+
+    ! =====================================================================================
+
+
+
+    !=============================== Ordinary diff eqts ===================================
+    ! This function will be used for Ordinary diff eqts Methods
+    ! ()
+    function fdexy(x,y)
+        real::fdexy
+        real::x
+        real::y
+        !Se debe cambiar manualmente dependiendo el problema
+        fdexy  = -2*(x**3) + 12*(x**2) -20*x +8.5
+    end function
+    !======================================================================================
+
 end module functions

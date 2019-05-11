@@ -16,7 +16,7 @@ CC = gfortran
 #OBJS	= $(addprefix $(BINDIR), $(_OBJS))
 
 #en orden de compilacion
-OBJS := $(BINDIR)functions.o $(BINDIR)files.o $(BINDIR)modulo_f.o \
+OBJS := $(BINDIR)functions.o $(BINDIR)outs.o $(BINDIR)modulo_f.o \
 	$(BINDIR)BisectionMethod.o $(BINDIR)FalsePositionMethod.o $(BINDIR)NewtonMethod.o $(BINDIR)SecanteMethod.o \
 	$(BINDIR)GaussianEliminationMethod.o $(BINDIR)LU_DecompositionMethod.o $(BINDIR)GaussSeidelMethod.o \
 	$(BINDIR)PowerSeriesMethod.o $(BINDIR)LagrangeMethod.o $(BINDIR)NewtonDividedDifference.o \

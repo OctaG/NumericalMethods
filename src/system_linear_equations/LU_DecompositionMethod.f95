@@ -14,6 +14,8 @@ module LU_DecompositionMethod
       real:: sum
 
       call writeFileToMatrix(n, a, b, x)
+      print*, "Starting ..."
+        print*, ""
 
       !Decomposition phase using crout
       do j = 2, n

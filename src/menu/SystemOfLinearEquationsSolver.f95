@@ -16,12 +16,13 @@ module SystemOfLinearEquationsSolver
       print*, "Here you can choose between 3 amazing numerical methods to solve systems of linear equations"
 
       do while(option /= 4)
-        print*, "Systems Of Linear Equation"
+        print*, "=== Systems Of Linear Equations ==="
+        print*,""
         print*, "Select one option"
         print*, " [ 1: Gaussian Elimination ]"
         print*, " [ 2: LU Decomposition ]"
         print*, " [ 3: Gauss-Seidel ]"
-        print*, " [ 4: Back to menu ] "
+        print*, " [ 4: Go back ] "
         read*, option
         call system('clear')
         select case(option)
@@ -48,7 +49,9 @@ module SystemOfLinearEquationsSolver
     end subroutine SystemOfLinearEquations
 
     subroutine printReminder()
-      print*, "Remeber that the matrix data must be in myData.txt under the appropiate format. Check documentation if needed."
+      print*, "-- Remember that the matrix data must be in myData.txt under the appropiate format."
+      print*, "-- Check documentation if needed."
+      print*,""
     end subroutine printReminder
 
 end module SystemOfLinearEquationsSolver

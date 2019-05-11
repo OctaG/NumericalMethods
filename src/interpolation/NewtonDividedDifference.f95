@@ -1,10 +1,10 @@
 MODULE NewtonDivededDifference
+    use modulo_f
 
     CONTAINS
 
     SUBROUTINE NewtonDivided()
 
-        real:: value, sum, mtemp
         real, dimension(:), allocatable::x
         real, dimension(:), allocatable::y
         real, dimension(:,:), allocatable :: aux
@@ -17,14 +17,7 @@ MODULE NewtonDivededDifference
         ! point=0
         ! isNotValid=.true.
         
-        print*, "Remeber that the points must be in Points.txt under the appropiate format. Check documentation if needed."
-        open(7, file = 'inputs/Points.txt')
-        read(7, *) n
-        allocate(x(n))
-        allocate(y(n))
-        read(7, *) x
-        read(7, *) y
-        close(7)
+        call readPoints(x,y,n)
 
         allocate(aux(n-1,n-1))
 
@@ -49,36 +42,9 @@ MODULE NewtonDivededDifference
         end do
 
         !print *, aux
-
-        print *, "Give me the value of x in f(x) you want to evaluate"
-        read*, value
-
-        degree = -1
-        do while(degree <= 0 .or. degree > (n - 1))
-            print*, "Give me the degree of the polynomial"
-            read*, degree
-            if (degree <= 0 .or. degree > (n - 1)) then
-                print *, "Degree must be 0 < degree < (n-1)"
-            end if
-        end do
+        call askForPointsNEWTON(n, aux, x, y)
 
 
-        sum = y(1)
-        do i = 1, degree, 1
-            mtemp = aux(i,1)
-            do j = 1, i, 1
-                !print *, "x", j
-                mtemp = mtemp * (value - x(j))
-            end do
-            sum = sum + mtemp
-        end do
-        print *, sum
-
-        print*, "Result is written in newtondivided.txt"
-
-        open(8, file="newtondivided.txt")
-        write(8, *) "The result of interpolating x=", value, "is P(", value, ")= ", sum
-        close(8)
     END SUBROUTINE NewtonDivided
 
 END MODULE NewtonDivededDifference

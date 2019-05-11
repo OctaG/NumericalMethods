@@ -116,6 +116,8 @@ $b_1\:b_2\:...\:b_{n}$
 
 Where $\boldsymbol{n}$ is the number of columns and rows of matrix $\boldsymbol{[A]}$, followed by $\boldsymbol{a_i}$ numbers in the matrix and finally $\boldsymbol{b_i}$ numbers of the matrix $\boldsymbol{[B]}$.
 
+*note: For Gauss-Seidel the matrix must be in heavy diagonal form*
+
 **Aditional input:** None
 
 **Output:** The resulting matrix $[A]$ will appear first, followed by the results of $X_1$ to $X_n$
@@ -140,7 +142,7 @@ Where $\boldsymbol{n}$ is the number of points, followed by the pairs of numbers
 **Aditional input:**  The value of $x$ that they want to use, then they will be asked for the order of the polynomial and, finally,
 the user will be asked for the point from which they want to start the evaluation.
 
-**Output:** Something
+**Output:** R
 
 \newpage
 

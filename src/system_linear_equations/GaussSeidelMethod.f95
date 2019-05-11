@@ -15,6 +15,8 @@ module GaussSeidelMethod
         !Lambda can be stablished different if relaxation is needed
         call writeFileToMatrix(n, a, b, x)
         call askForStopValues(tolerance, max)
+        print*, "Starting ..."
+        print*, ""
 
         !First iteration x's = 0
        		do i = 1, n

@@ -5,7 +5,7 @@ module GaussianEliminationMethod
 
     contains
 
-      subroutine GaussianElimination()
+    subroutine GaussianElimination()
         integer:: n
         real, dimension(:,:), allocatable :: a
         real, dimension(:), allocatable :: b
@@ -13,7 +13,8 @@ module GaussianEliminationMethod
         real:: sum
 
         call writeFileToMatrix(n, a, b, x)
-
+        print*, "Starting ..."
+        print*, ""
         !Forward elimination
         do k = 1, n-1
           do i = k + 1, n

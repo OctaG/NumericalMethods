@@ -32,13 +32,10 @@ PROGRAM Main
         call system('clear')
         select case(option)
             case (1)
-                call system('clear')
                 call RootFinding()
             case (2)
-                print *, "System Of Linear Equations Solver"
                 call SystemOfLinearEquations()
             case (3)
-                print *, "Interpolation"
                 call Interpolation()
             case (4)
                 print *, "Regression"

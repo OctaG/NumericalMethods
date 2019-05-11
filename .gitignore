@@ -39,6 +39,7 @@ Executable/
 BuildLog
 ErrorLog
 bin/*
+fort.*
 
 #Outputs
 results/*
@@ -50,3 +51,5 @@ results/*
 
 #Documentation
 *pdf
+
+#Error

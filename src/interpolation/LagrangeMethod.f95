@@ -1,6 +1,5 @@
 MODULE LagrangeMethod
     use modulo_f
-    use files
 
 CONTAINS
 

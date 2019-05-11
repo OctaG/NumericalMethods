@@ -14,8 +14,9 @@ module RootFindingMethods
         print*, "Here you can choose between 4 amazing numerical methods to find the root of a non-linear function"
 
         do while(option /= 5) ! not equal
-            print*, "Root Finding Methods"
+            print*, "=== Root Finding Methods ==="
             call funcionHumanize()
+            print*,""
             print*, "Select one option:"
             print*, " [ 1: Bisection ] "
             print*, " [ 2: False-Position ] "
@@ -27,17 +28,27 @@ module RootFindingMethods
             select case(option)
                 case (1)
                     print*, "Bisection"
+                    print*, "-- Remember that the function must be in functions.f95."
+                    print*, "-- Check documentation if needed."
+                    print*,""
                     call Bisection()
-                    print*, "Remeber that the function must be in functions.f95. Check documentation if needed."
                 case (2)
-                    print*, "Remeber that the function must be in functions.f95. Check documentation if needed."
                     print *, "False-Position"
+                    print*, "-- Remember that the function must be in functions.f95."
+                    print*, "-- Check documentation if needed."
+                    print*,""
                     call FalsePosition()
                 case (3)
                     print *, "Newton-Raphson"
+                    print*, "-- Remember that the function must be in functions.f95 and the repective derivate."
+                    print*, "-- Check documentation if needed."
+                    print*,""
                     call Newton()
                 case (4)
                     print *, "Secant"
+                    print*, "-- Remember that the function must be in functions.f95 and the repective derivate."
+                    print*, "-- Check documentation if needed."
+                    print*,""
                     call Secante()
                 case (5)
                     print*, "You have left the root finding module"
