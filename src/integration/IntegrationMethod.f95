@@ -17,7 +17,7 @@ CONTAINS
         print*, "Give me the tolerance."
     	read*, tol
 
-        print*, "Give me the maximum number of iterations."
+        print*, "Give me the maximum number of iterations"
     	read*, maxIts
 
         cont=2
@@ -56,7 +56,7 @@ CONTAINS
 		end if
 
 
-
+	
 	end subroutine Simpson13
 
     subroutine Simpson38()
@@ -112,7 +112,7 @@ CONTAINS
           	print *,'Max iterations passed. Integral = ', sum
 		end if
 
-
+	
 	end subroutine Simpson38
 
 
@@ -170,8 +170,38 @@ CONTAINS
           	print *,'Max iterations passed. Integral = ', sum
 		end if
 
-
+	
 	end subroutine Trapezoidal
+
+    subroutine TrapezoidalWithData()
+    	real:: sum, trap
+        integer:: cont, n
+    	real, dimension(:), allocatable::x
+    	real, dimension(:), allocatable::y
+	
+		open(7, file = 'Points.txt')
+  		read(7, *) n
+	
+		allocate(x(n))
+  		allocate(y(n))
+
+    	read(7, *) x
+    	read(7, *) y
+
+		close(7)
+
+        cont=1
+        sum=0
+        trap=0
+
+        do i=1, n-1
+			sum=sum+(y(i)+y(i+1))*((x(i+1)-x(i))/2)
+        end do
+
+        print*, 'Integral = ', sum
+
+	
+	end subroutine TrapezoidalWithData
 
     function Simpson13m(h, cont, p)
     	real:: sum, h, p
@@ -218,5 +248,5 @@ CONTAINS
 
     end function Trapm
 
-
+    
 END MODULE IntegrationMethod
