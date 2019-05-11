@@ -41,6 +41,7 @@ ErrorLog
 bin/*
 
 #Outputs
+results/*
 *.txt
 !myData.txt
 !Points.txt

@@ -25,7 +25,7 @@ MODULE SecanteMethod
         error_relativo = calcularErrorRelativo(value, value_ant)
 
         IF(error_relativo <= tolerancia) THEN
-          call output(value, iter)
+          call outputROOTFIND(value, iter, error_relativo, tolerancia, .true.)
           exit
         ELSE
           x1 = x2

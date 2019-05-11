@@ -61,7 +61,8 @@ a. `$ make clean`
 
 # How to Use
 Inputs files are in directory `inputs/`
-*Note: The numbers must be separated by spaces*
+
+*Note: For `txt` files the numbers must be separated by spaces*
 
 \newpage
 
@@ -72,13 +73,18 @@ Inputs files are in directory `inputs/`
 
 **Required file:** `functions.f95`
 
-**Format:** The equation must be written in frontan sintax
+**Format:** The equation must be written in frontan sintax.
+It is needed:
+
+- The function $f(x)$
+- The derivate of the function $\frac{d}{dx}f(x)$ (only if you want to use Newton Raphson Method)
+- A visualization (print) of the current ecuation (Optional)
 
 **Aditional input:** Two points $[a,b]$ that enclose the root of the function. The relative tolerance error $t$ in percentage $(0 < t < 1)$ and the maximum number of iterations $n$.
 
-**Output:** Root found $x$ after reach maximun number of iterations or the tolerance.
+**Output:** Root found $x$ after reach maximun number of iterations $n$ or the tolerance $t$.
 
-*Note: recall that you have to compile again*
+*Note: recall that you have to compile again if you change something*
 
 \newpage
 

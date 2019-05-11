@@ -1,7 +1,7 @@
-# := indicar que no cambie aun si después se modifica
+﻿# := indicar que no cambie aun si después se modifica
 BINDIR := bin/
 SRCDIR := src/
-#OUTPUTDIR := out/
+OUTPUTDIR := results/
 EXECUTABLE := methods.out
 
 CC = gfortran
@@ -16,14 +16,24 @@ CC = gfortran
 #OBJS	= $(addprefix $(BINDIR), $(_OBJS))
 
 #en orden de compilacion
-OBJS := $(BINDIR)modulo_f.o \
+OBJS := \
+	$(BINDIR)functions.o $(BINDIR)files.o $(BINDIR)modulo_f.o \
+	\
 	$(BINDIR)BisectionMethod.o $(BINDIR)FalsePositionMethod.o $(BINDIR)NewtonMethod.o $(BINDIR)SecanteMethod.o \
+	\
 	$(BINDIR)GaussianEliminationMethod.o $(BINDIR)LU_DecompositionMethod.o $(BINDIR)GaussSeidelMethod.o \
+	\
 	$(BINDIR)PowerSeriesMethod.o $(BINDIR)LagrangeMethod.o $(BINDIR)NewtonDividedDifference.o \
+	\
 	$(BINDIR)LinearMethod.o $(BINDIR)PRMethod.o $(BINDIR)LinearLogMethod.o $(BINDIR)LinearExponentialMethod.o \
+	\
 	$(BINDIR)IntegrationMethod.o \
+	\
 	$(BINDIR)EulerMethod.o $(BINDIR)ModifiedEulerMethod.o $(BINDIR)RungeKutta3Method.o $(BINDIR)RungeKutta4Method.o \
-	$(BINDIR)RootFindingMethods.o $(BINDIR)SystemOfLinearEquationsSolver.o $(BINDIR)InterpolationMethods.o $(BINDIR)RegressionMethods.o $(BINDIR)IntegrationMethods.o $(BINDIR)OrdinaryDiffEquationsMethods.o \
+	\
+	$(BINDIR)RootFindingMethods.o $(BINDIR)SystemOfLinearEquationsSolver.o $(BINDIR)InterpolationMethods.o \
+	$(BINDIR)RegressionMethods.o $(BINDIR)IntegrationMethods.o $(BINDIR)OrdinaryDiffEquationsMethods.o \
+	\
 	$(BINDIR)Main.o
 
 # Build rules
@@ -35,7 +45,7 @@ banner: $(BINDIR)
 
 $(BINDIR):
 	@mkdir -p $(BINDIR)
-#@mkdir -p $(OUTPUTDIR)
+	@mkdir -p $(OUTPUTDIR)
 
 program: $(OBJS)
 	@echo $$(echo `date +'%H:%M:%S'`) Completing compilation ...
@@ -47,6 +57,9 @@ program: $(OBJS)
 	@echo For details about inputs and outputs look at README.md
 
 $(BINDIR)%.o: $(SRCDIR)%.f95
+	@$(CC) -c $^ -o $@ -J$(BINDIR)
+
+$(BINDIR)%.o: $(SRCDIR)general/%.f95
 	@$(CC) -c $^ -o $@ -J$(BINDIR)
 
 $(BINDIR)%.o: $(SRCDIR)root_finding/%.f95
@@ -67,9 +80,15 @@ $(BINDIR)%.o: $(SRCDIR)integration/%.f95
 $(BINDIR)%.o: $(SRCDIR)ordinary_diff_eqts/%.f95
 	@$(CC) -c $^ -o $@ -J$(BINDIR)
 
+$(BINDIR)%.o: $(SRCDIR)menu/%.f95
+	@$(CC) -c $^ -o $@ -J$(BINDIR)
+
+$(BINDIR)%.o: inputs/%.f95
+	@$(CC) -c $^ -o $@ -J$(BINDIR)
+
 clean:
 	@echo Deleting binary files...
 	@rm -rf $(BINDIR)
 	@rm -f $(EXECUTABLE)
 	@echo WARNING! deleting outputs ...
-	@rm *txt
+	@rm -rf $(OUTPUTDIR)
