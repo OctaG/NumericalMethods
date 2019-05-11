@@ -1,4 +1,4 @@
-﻿# := indicar que no cambie aun si después se modifica
+# := indicar que no cambie aun si después se modifica
 BINDIR := bin/
 SRCDIR := src/
 OUTPUTDIR := results/
@@ -16,24 +16,14 @@ CC = gfortran
 #OBJS	= $(addprefix $(BINDIR), $(_OBJS))
 
 #en orden de compilacion
-OBJS := \
-	$(BINDIR)functions.o $(BINDIR)files.o $(BINDIR)modulo_f.o \
-	\
+OBJS := $(BINDIR)functions.o $(BINDIR)files.o $(BINDIR)modulo_f.o \
 	$(BINDIR)BisectionMethod.o $(BINDIR)FalsePositionMethod.o $(BINDIR)NewtonMethod.o $(BINDIR)SecanteMethod.o \
-	\
 	$(BINDIR)GaussianEliminationMethod.o $(BINDIR)LU_DecompositionMethod.o $(BINDIR)GaussSeidelMethod.o \
-	\
 	$(BINDIR)PowerSeriesMethod.o $(BINDIR)LagrangeMethod.o $(BINDIR)NewtonDividedDifference.o \
-	\
 	$(BINDIR)LinearMethod.o $(BINDIR)PRMethod.o $(BINDIR)LinearLogMethod.o $(BINDIR)LinearExponentialMethod.o \
-	\
 	$(BINDIR)IntegrationMethod.o \
-	\
 	$(BINDIR)EulerMethod.o $(BINDIR)ModifiedEulerMethod.o $(BINDIR)RungeKutta3Method.o $(BINDIR)RungeKutta4Method.o \
-	\
-	$(BINDIR)RootFindingMethods.o $(BINDIR)SystemOfLinearEquationsSolver.o $(BINDIR)InterpolationMethods.o \
-	$(BINDIR)RegressionMethods.o $(BINDIR)IntegrationMethods.o $(BINDIR)OrdinaryDiffEquationsMethods.o \
-	\
+	$(BINDIR)RootFindingMethods.o $(BINDIR)SystemOfLinearEquationsSolver.o $(BINDIR)InterpolationMethods.o $(BINDIR)RegressionMethods.o $(BINDIR)IntegrationMethods.o $(BINDIR)OrdinaryDiffEquationsMethods.o \
 	$(BINDIR)Main.o
 
 # Build rules
@@ -84,7 +74,7 @@ $(BINDIR)%.o: $(SRCDIR)menu/%.f95
 	@$(CC) -c $^ -o $@ -J$(BINDIR)
 
 $(BINDIR)%.o: inputs/%.f95
-	@$(CC) -c $^ -o $@ -J$(BINDIR)
+		@$(CC) -c $^ -o $@ -J$(BINDIR)
 
 clean:
 	@echo Deleting binary files...

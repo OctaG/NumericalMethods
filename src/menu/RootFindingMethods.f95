@@ -28,7 +28,9 @@ module RootFindingMethods
                 case (1)
                     print*, "Bisection"
                     call Bisection()
+                    print*, "Remeber that the function must be in functions.f95. Check documentation if needed."
                 case (2)
+                    print*, "Remeber that the function must be in functions.f95. Check documentation if needed."
                     print *, "False-Position"
                     call FalsePosition()
                 case (3)

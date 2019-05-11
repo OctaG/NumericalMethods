@@ -1,10 +1,10 @@
 MODULE SecanteMethod
   use modulo_f
-  
+
   CONTAINS
     SUBROUTINE Secante()
 
-      real:: x1, x2, fx1, fx2, tolerancia, value, error_relativo, value_ant
+      real:: x1, x2, fx1, fx2, tolerancia, value, value_ant
       integer:: iter, max
       iter = 0
 
@@ -22,10 +22,11 @@ MODULE SecanteMethod
 
         value = x2-(((fx2)*(x2-x1))/(fx2-fx1))
 
-        error_relativo = calcularErrorRelativo(value, value_ant)
+        !error_relativo = calcularErrorRelativo(value, value_ant)
+        error_absoluto = calcularErrorAbsoluto(value)
 
-        IF(error_relativo <= tolerancia) THEN
-          call outputROOTFIND(value, iter, error_relativo, tolerancia, .true.)
+        IF(error_absoluto <= tolerancia) THEN
+          call outputROOTFIND(value, iter, error_absoluto, tolerancia, .true.)
           exit
         ELSE
           x1 = x2
@@ -35,8 +36,7 @@ MODULE SecanteMethod
       END DO
 
       IF(iter == max) THEN
-        print*, "Maximum number of operations reached"
-        print*,"Approximated value found: ", value
+        call outputROOTFIND(value, iter, error_absoluto, tolerancia, .false.)
       END IF
 
     END SUBROUTINE Secante

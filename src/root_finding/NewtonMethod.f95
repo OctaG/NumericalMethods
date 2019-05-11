@@ -3,7 +3,7 @@ MODULE NewtonMethod
 
     contains
     SUBROUTINE Newton()
-        real:: x1, fx, fx_prime, tolerancia, value, error_relativo, value_ant
+        real:: x1, fx, fx_prime, tolerancia, value, value_ant
         integer:: iter, max
         logical:: derivativeIsOk = .false.
 
