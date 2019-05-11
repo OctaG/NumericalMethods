@@ -23,7 +23,8 @@ MODULE NewtonDivededDifference
 
         !print *, x 
         !print *, y
-
+        print*, "Starting"
+        print*,""
         do i = 1, n-1, 1
             !run n-1 times, becase it is inclusive
             !this for if the colums

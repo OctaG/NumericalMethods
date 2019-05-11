@@ -70,11 +70,12 @@ module outs
         END IF
     end subroutine resultToFileINTERPOLATION
 
-    subroutine resultToFileINTERPOLNEWTON(file_name, value, sum)
+    subroutine resultToFileINTERPOLNEWTON(file_name, value, sum, degree)
         character(len = 23) :: file_name
         real :: value, sum
+        integer:: degree
         open(1, file = 'results/'//file_name, action='write',position='append', status='unknown')
-            write(1,*) "f(", value, ")= ", sum
+            write(1,*) "f(", value, ")= ", sum, " | with degree = ", degree
         close(1)
     end subroutine resultToFileINTERPOLNEWTON
 

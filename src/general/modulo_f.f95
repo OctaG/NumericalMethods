@@ -321,8 +321,8 @@ MODULE modulo_f
             end do
             sum = sum + mtemp
         end do
-        print*, "f(", value, ") = ", sum
-        call resultToFileINTERPOLNEWTON(file_name, value, sum)
+        print*, "f(", value, ") = ", sum, "| with degree = ", degree
+        call resultToFileINTERPOLNEWTON(file_name, value, sum, degree)
       else
         option = 0
       end if
@@ -332,7 +332,6 @@ MODULE modulo_f
     print*, ""
   end subroutine askForPointsNEWTON
   !===================================================================================
-
 
 !****************************************************************************************************
 !**************************************** END INTERPOLATION *****************************************
