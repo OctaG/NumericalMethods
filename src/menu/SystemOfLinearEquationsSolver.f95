@@ -32,6 +32,7 @@ module SystemOfLinearEquationsSolver
           call GaussianElimination()
         case(2)
         	print*, "LU Decomposition"
+          print*, "-- If you want to use another Right Hand Side the data must be in RHS.txt under the appropiate format"
           call printReminder()
           call LU_Decomposition()
         case(3)
@@ -41,8 +42,10 @@ module SystemOfLinearEquationsSolver
           call GaussSeidel()
         case(4)
           print*, "You have left the system of linear equations solver module"
+          print*,""
         case default
           print *, "The number you chose is not an option"
+          print*,""
         end select
 
       end do

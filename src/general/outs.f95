@@ -59,7 +59,7 @@ module outs
 
     subroutine resultToFileINTERPOLATIONPower(value, resultP, aResults, degree, point)
         character (len = 23) :: file_name
-        integer :: save_file = 0, degree, answer, i, point
+        integer :: degree, answer, i, point
         real:: value, resultP
         real, dimension(:) :: aResults
         logical::continueL
@@ -67,13 +67,12 @@ module outs
         continueL=.true.
         answer=1
 
-        print*, "Do you want to export into txt file?"
-        print*, "[Type 1 to yes or 0 to continue]"
-        read*, save_file
-        IF(save_file == 1) THEN
+        !IF(save_file == 1) THEN
             print*, "Type the file name where you want to save: "
             print*, "Up to 20 characters, please"
             read*, file_name
+            print*, "The coefficients are now in the file..."
+            print*, "The result of interpolating x=", value, "is P(", value, ")= ", resultP
             ! output data into a file
             open(7, file = 'results/'//file_name, action='write',position='append', status='unknown')
             	write(7,*) "The coefficients of the polynomial, from A0 to An"
@@ -94,6 +93,7 @@ module outs
                         do i=1, degree+1
                 			resultP=resultP+aResults(i)*value**(i-1)	
             			end do
+                        print*, "The result of interpolating x=", value, "is P(", value, ")= ", resultP
                         open(7, file = 'results/'//file_name, action='write',position='append', status='unknown')
                 		write(7,*) "The result of interpolating x=", value, "is P(", value, ")= ", resultP
 						close(7)
@@ -102,12 +102,12 @@ module outs
         			end if
     			end do 
             !close(1)
-        END IF
+        !END IF
     end subroutine resultToFileINTERPOLATIONPower
     
     subroutine resultToFileINTERPOLATIONLagrange(value, sum, coef, degree, point, x, y)
         character (len = 23) :: file_name
-        integer :: save_file = 0, degree, point, answer, coefCount, i, j
+        integer :: degree, point, answer, coefCount, i, j
         real:: value, sum, product
         real, dimension(:) :: coef
         real, dimension(:) :: y
@@ -117,60 +117,59 @@ module outs
         continueL=.true.
         coefCount=1  
 
-        print*, "Do you want to export into txt file?"
-        print*, "[Type 1 to yes or 0 to continue]"
-        read*, save_file
-        IF(save_file == 1) THEN
-            print*, "Type the file name where you want to save: "
-            print*, "Up to 20 characters, please"
-            read*, file_name
-            ! output data into a file
-            open(7, file = 'results/'//file_name, action='write',position='append', status='unknown')
-            write(7,*) "The Lagrange coefficients from L0 to Ln if you start with point ", point
-            write(7,*) " evaluated with ", value, " are "
-            do i=1, degree+1
-      			write(7,*) "L(x)=", coef(i)
-    		end do
-            write(7,*) "The result of interpolating x=", value, "is P(", value, ")= ", sum
-            close(7)
-				do while(continueL)
-        			product=0
-        			sum=0
-        			print*, "Do you want to interpolate another point (Yes=1, No=0)"
-        			read*, answer
-        			if(answer==1) then
-            			print*, "Give me the new point."
-            			read*, value
-            			do i=point, degree+point
-      						product = 1
+        print*, "Type the file name where you want to save: "
+        print*, "Up to 20 characters, please"
+        read*, file_name
+        print*, "The coefficients are now in the file..."
+        print*, "The result of interpolating x=", value, "is P(", value, ")= ", sum
+        ! output data into a file
+        open(7, file = 'results/'//file_name, action='write',position='append', status='unknown')
+        write(7,*) "The Lagrange coefficients from L0 to Ln if you start with point ", point
+        write(7,*) " evaluated with ", value, " are "
+        do i=1, degree+1
+            write(7,*) "L(x)=", coef(i)
+        end do
+        write(7,*) "The result of interpolating x=", value, "is P(", value, ")= ", sum
+        close(7)
+            do while(continueL)
+                product=0
+                sum=0
+                print*, "Do you want to interpolate another point (Yes=1, No=0)"
+                read*, answer
+                if(answer==1) then
+                    print*, "Give me the new point."
+                    read*, value
+                    do i=point, degree+point
+                        product = 1
 
-      						do j=point, degree+point
-								IF(i /= j) THEN
-									product = product * (value-x(j))/(x(i)-x(j))
-        						END IF
-      						end do
-      						coef(coefCount)=product
-      						product = y(i)*product
-							sum=sum+product
-        					coefCount=coefCount+1
-    					end do
+                        do j=point, degree+point
+                            IF(i /= j) THEN
+                                product = product * (value-x(j))/(x(i)-x(j))
+                            END IF
+                        end do
+                        coef(coefCount)=product
+                        product = y(i)*product
+                        sum=sum+product
+                        coefCount=coefCount+1
+                    end do
 
-                        open(7, file = 'results/'//file_name, action='write',position='append', status='unknown')
-            			write(7,*) "The Lagrange coefficients from L0 to Ln, if you start with the same point,"
-                        write(7,*) "evaluated with ", value, " are "
-                		do i=1, degree+1
-      						write(7,*) "L(x)=", coef(i)
-    					end do
-                		write(7,*) "The result of interpolating x=", value, "is P(", value, ")= ", sum
-                		close(7)
+                    open(7, file = 'results/'//file_name, action='write',position='append', status='unknown')
+                    write(7,*) "The Lagrange coefficients from L0 to Ln, if you start with the same point,"
+                    write(7,*) "evaluated with ", value, " are "
+                    do i=1, degree+1
+                        write(7,*) "L(x)=", coef(i)
+                    end do
+                    write(7,*) "The result of interpolating x=", value, "is P(", value, ")= ", sum
+                    close(7)
+                    print*, "The result of interpolating x=", value, "is P(", value, ")= ", sum
 
-                        coefCount=1
-        			else
-         		   		continueL=.false.
-        			end if
-    			end do 
-            !close(1)
-        END IF
+                    coefCount=1
+                else
+                    continueL=.false.
+                end if
+            end do 
+        !close(1)
+
     end subroutine resultToFileINTERPOLATIONLagrange
 
     subroutine resultToFileINTERPOLNEWTON(file_name, value, sum, degree)

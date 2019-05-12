@@ -72,6 +72,9 @@ module GaussSeidelMethod
         end do
 
         call writeResultsToFile(a, x, n, copyOfA, copyOfB)
+        call system('clear')
+        print*, "Complete..."
+        print*, 
 
       end subroutine GaussSeidel
 

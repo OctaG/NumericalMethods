@@ -53,8 +53,10 @@ module RootFindingMethods
                 case (5)
                     print*, "You have left the root finding module"
                     print*,""
+                    print*,""
                 case default
                     print *, "The number you chose is not an option"
+                    print*,""
             end select
         end do
 

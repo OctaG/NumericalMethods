@@ -40,8 +40,10 @@ module InterpolationMethods
           call NewtonDivided()
         case(4)
           print*, "You have left the interpolation module"
+          print*,""
         case default
           print *, "The number you chose is not an option"
+          print*,""
         end select
 
       end do

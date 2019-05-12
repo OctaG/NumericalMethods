@@ -16,7 +16,7 @@ module LU_DecompositionMethod
       continue = 1
       call writeFileToMatrix(n, a, b, x, copyOfA, copyOfB)
       print*, "Starting ..."
-        print*, ""
+      print*, ""
 
       !Decomposition phase using crout
       do j = 2, n
@@ -69,12 +69,15 @@ module LU_DecompositionMethod
         end do
 
         call writeResultsToFile(a, x, n, copyOfA, copyOfB)
+
         print*, "Would you like to solve for a different RHS [yes = 1/ no = 0]"
         read*, continue
         call writeRHSToMatrix(b)
         copyOfB = b
       end do
-
+      call system('clear')
+      print*, "Complete..."
+      print*, ""
     end subroutine LU_Decomposition
 
 end module LU_DecompositionMethod

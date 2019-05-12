@@ -38,10 +38,8 @@ PROGRAM Main
             case (3)
                 call Interpolation()
             case (4)
-                print *, "Regression"
                 call Regression()
             case (5)
-                print *, "Integration"
                 call Integration()
             case (6)
                 print*, "Ordinary Differential Equations"

@@ -48,8 +48,10 @@ module RegressionMethods
               call LinearLog()
             case (5)
               print*, "You have left the regression module"
+              print*,""
             case default
               print *, "The number you chose is not an option"
+              print*,""
           end select
         end do
       end subroutine Regression

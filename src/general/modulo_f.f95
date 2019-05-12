@@ -200,21 +200,20 @@ MODULE modulo_f
 
   !======================== SHOW OUPUT ==========================
   subroutine writeResultsToFile(a, x, n, copyOfA, copyOfB)
-      real, dimension(:,:), allocatable :: a, copyOfA
+      real, dimension(:,:), allocatable :: a, copyOfA, temp
       real, dimension(:), allocatable :: x, copyOfB
       integer :: i, n
 
-      a = transpose(a)
+      !a = transpose(a)
+      temp = transpose(a)
 
       !print*, a
       print*, "This are your results:"
       do i = 1, n
         print*, "x", i, "= ", x(i)
       end do
-      call resultToFileSOLEQ(a,x,n,copyOfA,copyOfB)
-      call system('clear')
-      print*, "Complete..."
-      print*, ""
+      call resultToFileSOLEQ(temp,x,n,copyOfA,copyOfB)
+
   end subroutine writeResultsToFile
   !===============================================================
 
@@ -249,14 +248,14 @@ MODULE modulo_f
   !===================================================================================
 
   !================================ ASK FOR POINTS ======================================
-  subroutine askForPoints(value,degree,point)
-    integer:: degree, point
+  subroutine askForPoints(value,degree,point, n)
+    integer:: degree, point, n
     real:: value, limit
     logical::isNotValid
 
     isNotValid=.true.
 
-    print*, "Give me the point you want evaluated."
+    print*, "Give me the point you want evaluated. This means the x on f(x)"
     read*, value
 
     print*, "Give me the degree of the polynomial"
@@ -269,25 +268,26 @@ MODULE modulo_f
             print*, "You can not give that value because the list of numbers starts at 1"
         END IF
     END DO
+    limit = 0.0
 
-  DO WHILE (isNotValid)
-    limit=point+degree
-    IF((limit)>n) THEN
+    DO WHILE (isNotValid)
+      limit=point+degree
+      IF((limit)>n) THEN
         print*, "The values for degree and initial point are not valid"
-    print*, "Give me the degree of the polynomial"
-      read*, degree
-        point = 0
-        DO WHILE (point < 1)
-          print*, "Give me the point from which you want to start evaulating"
-          read*, point
-            IF(point < 1) THEN
-                print*, "You can not give that value because the list of numbers starts at 1"
-            END IF
-        END DO
-        limit = point+degree
-    ELSE
+        print*, "Give me the degree of the polynomial"
+        read*, degree
+          point = 0
+          DO WHILE (point < 1)
+            print*, "Give me the point from which you want to start evaulating"
+            read*, point
+              IF(point < 1) THEN
+                  print*, "You can not give that value because the list of numbers starts at 1"
+              END IF
+          END DO
+          limit = point+degree
+      ELSE
         isNotValid=.false.
-    END IF
+      END IF
     END DO
   end subroutine askForPoints
 
@@ -312,8 +312,7 @@ MODULE modulo_f
     print*,"All the coefficients are in the table now... "
     option = -1
     do while(option /= 0)
-      print*, "Do you want to evaluate a point?"
-      print*, "[Type 1 to yes or 0 to continue]"
+      print*, "Do you want to interpolate another point (Yes=1, No=0)"
       read*,option
       if(option == 1) then
         print *, "Give me the value of x in f(x) you want to evaluate"
@@ -407,8 +406,6 @@ MODULE modulo_f
           !print *, "Logarithmic"
           write(1,*) "The new power equation is: ", exp(a0), " * x^( ", a1, " )"
           write(1, *)
-        case default
-          print *, "Algo muy raro pasa aquí"
       end select
       write(1, *) "Sr = ", sumSr
       write(1, *) "St = ", sumSt
@@ -430,8 +427,6 @@ MODULE modulo_f
       case (4)
         !print *, "Logarithmic"
         print*, "The new power equation is: ", exp(a0), " * x^( ", a1, " )"
-      case default
-        print *, "Algo muy raro pasa aquí"
     end select
 
     do while (state)
@@ -450,8 +445,6 @@ MODULE modulo_f
               case (4)
                 !print *, "Logarithmic"
                 fpass = (exp(a0)*pointToEvaluate**(a1))
-              case default
-                print *, "Algo muy raro pasa aquí"
             end select
 
             print*, "R(x)=", fpass

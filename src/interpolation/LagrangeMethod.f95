@@ -6,7 +6,7 @@ CONTAINS
 
 	SUBROUTINE Lagrange()
 
-	real:: product, value, sum, limit
+	real:: product, value, sum
     real, dimension(:), allocatable::x
     real, dimension(:), allocatable::y
     real, dimension(:), allocatable::coef
@@ -19,10 +19,9 @@ CONTAINS
     continueL=.true.
     coefCont=1
 	
-    print*, "Remeber that the points must be in Points.txt under the appropiate format. Check documentation if needed."
     call readPoints(x,y,n, 'inputs/Points.txt ')
     
-	call askForPoints(value, degree, point)
+	call askForPoints(value, degree, point, n)
 	
     allocate(coef(degree+1))
 	
@@ -41,6 +40,9 @@ CONTAINS
     end do
     
     call resultToFileINTERPOLATIONLagrange(value, sum, coef, degree, point, x, y)
+    call system('clear')
+    print*, "Complete..."
+    print*, ""
 
 
 END SUBROUTINE Lagrange

@@ -42,8 +42,10 @@ module OrdinaryDiffEquationsMethods
           call RungeKutta4()
         case (5)
           print*, "You have left the root ordinary differential equations module"
+          print*,""
         case default
           print *, "The number you chose is not an option"
+          print*,""
         end select
       end do
 

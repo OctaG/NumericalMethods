@@ -23,9 +23,10 @@ In this proyect you can find:
     b. Lagrange
     c. Newton Divided Differences
 4. **Regression**
-    a. Polynomial Regression (including linear regression)
+    a. Polynomial Regression
     b. Exponential Regression
     c. Logarithmic Regression
+    d. Linear Regression
 5. **Numerical Integration**
     a. Trapezoidal Rule
     b. Simpson 1/3
@@ -85,7 +86,7 @@ Questions or request [GitHub Repo](https://github.com/OctaG/NumericalMethods "Li
 
 **Required file:** `functions.f95`
 
-**Format:** The equation must be written in frontan sintax.
+**Format:** The equation must be written in fortran sintax.
 It is needed for:
 
 ```
@@ -121,11 +122,11 @@ SUBROUTINE funcionHumanize()
 - LU Decomposition
 - Gauss-Seidel
 
-**Required file:** `myData.txt`
+**Required file:** `myData.txt`, `RHS.txt`
 
 **Format:**
 
-- The appropiate format of the data is as follows:
+- The appropiate format in `myData.txt` is as follows:
 
 $n$
 
@@ -143,8 +144,13 @@ $a_{n,1}\:a_{n,2}\:...\:a_{n,n}$
 
 $b_1\:b_2\:...\:b_{n}$
 
+- The appropiate format in `RHS.txt` is as follows:
+
+$b_1\:b_2\:...\:b_{n}$
+
 - Where $\boldsymbol{n}$ is the number of columns and rows of matrix $\boldsymbol{[A]}$, followed by $\boldsymbol{a_i}$ numbers in the matrix and finally $\boldsymbol{b_i}$ numbers of the matrix $\boldsymbol{[B]}$.
 - *Note: For Gauss-Seidel the matrix must be in heavy diagonal form*
+- *Note: For LU Decomposition the first result is using the matrix $\boldsymbol{[B]}$ if you want to calculate anotherone it will use the matrix in `RHS.txt`*
 
 **Aditional input:** None
 
@@ -181,11 +187,13 @@ $y_1,\:y_2,\:y_3,\:...,\:y_n$
 **Aditional input:** 
 
 - The order of the polynomial $degree$
-- *Power Series Method and Lagrange*: The user will be asked for the point from which they want to start the evaluation.
+- *Power Series Method and Lagrange*: Also ask for the point from which they want to start the evaluation.
 - The value of $x$ that they want to calculate
 
 **Output:**
 
+- *Power Series Method* :  The coefficients of the polynomial, from $A_0$ to $A_n$ and the evaluation of the points that the user would have calculated.
+- *Lagrange* : Lagrange coefficients and the evaluation of the points that the user would have calculated.
 - *Newton Divided Differences* : All the coefficients of the possible polynomials and the evaluation of the points that the user would have calculated.
 
 \newpage
@@ -258,7 +266,7 @@ $y_1,\:y_2,\:y_3,\:...,\:y_n$
 
 - Where $\boldsymbol{n}$ is the number of points, followed by the pairs of numbers that represents the points.
 
-- For `functions.f95`, the equation must be written in frontan sintax. It is needed
+- For `functions.f95`, the equation must be written in fortran sintax. It is needed
 
 ```
 FUNCTION funcionIntegral(x)
@@ -271,7 +279,7 @@ SUBROUTINE funcionIntegralHumanize()
 **Aditional input:** 
 
 - *Trapezoidal Rule (with data)*: None
-- *Trapezoidal Rule (with function), Simpson $\frac{1}{3}$ and Simpson $\frac{3}{8}$* : It its needed lower limit $a$, upper limit $b$, tolerance $t$ in percentage $0 < t < 1$, and $n$ limit of iterations.
+- *Trapezoidal Rule (with function), Simpson $\frac{1}{3}$ and Simpson $\frac{3}{8}$* : It is needed lower limit $a$, upper limit $b$, tolerance $t$ in percentage $0 < t < 1$, and $n$ limit of iterations.
 
 **Output:** The aproximated value of $\int_{a}^{b} f(x) dx$
 
@@ -290,7 +298,7 @@ SUBROUTINE funcionIntegralHumanize()
 
 **Required file:** `functions.f95`
 
-**Format:** The equation must be written in frontan sintax. It is needed
+**Format:** The equation must be written in fortran sintax. It is needed
 
 ```
 FUNCTION fdexy(x,y)
@@ -305,7 +313,7 @@ SUBROUTINE funcionDiffHumanize()
 - Tolerance $(0 < t < 1)$
 - $a$, $b$ 
 - $f(a)$
-- Fixed
+- Is it fixed?
 - Maximun number of iterations
 
 **Output:** Pair of points $(x,y)$.

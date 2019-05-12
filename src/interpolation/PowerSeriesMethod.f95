@@ -22,7 +22,7 @@ MODULE PowerSeriesMethod
         isNotValid=.true.
         
         call readPoints(x,y,n, 'inputs/Points.txt ')
-        call askForPoints(value, degree, point)
+        call askForPoints(value, degree, point, n)
         
         size=degree+1
 
@@ -67,6 +67,10 @@ MODULE PowerSeriesMethod
         !print*, resultP
 
         call resultToFileINTERPOLATIONPower(value, resultP, aResults, degree, point)
+        call system('clear')
+        print*, "Complete..."
+        print*, ""
+
 
     END SUBROUTINE PowerSeries
 
