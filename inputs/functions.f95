@@ -29,7 +29,7 @@ module functions
 
 
 
-    !============================== Integration ==================================
+    !============================== Integration ===========================================
     ! This function will be used for Integrations Methods
     ! ()
 
@@ -39,6 +39,10 @@ module functions
         real, parameter:: PI = 4.D0*DATAN(1.D0)
         funcionIntegral = (1/sqrt(2*PI)) * exp(-0.5*x**2)
     END FUNCTION funcionIntegral
+
+    SUBROUTINE funcionIntegralHumanize()
+        print *, "Current function: ","1/2"
+    END SUBROUTINE funcionIntegralHumanize
 
     ! =====================================================================================
 
@@ -54,6 +58,10 @@ module functions
         !Se debe cambiar manualmente dependiendo el problema
         fdexy  = -2*(x**3) + 12*(x**2) -20*x +8.5
     end function
+
+    SUBROUTINE funcionDiffHumanize()
+        print *, "Current function: ","2x^3"
+    END SUBROUTINE funcionDiffHumanize
     !======================================================================================
 
 end module functions

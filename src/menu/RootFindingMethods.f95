@@ -12,7 +12,7 @@ module RootFindingMethods
     subroutine RootFinding()
         integer:: option
         print*, "Here you can choose between 4 amazing numerical methods to find the root of a non-linear function"
-
+        option = -1
         do while(option /= 5) ! not equal
             print*, "=== Root Finding Methods ==="
             call funcionHumanize()

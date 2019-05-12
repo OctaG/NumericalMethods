@@ -20,7 +20,7 @@ MODULE PowerSeriesMethod
         point=0
         isNotValid=.true.
         
-        call readPoints(x,y,n)
+        call readPoints(x,y,n, 'inputs/Points.txt ')
         call askForPoints(value, degree, point)
         
         size=degree+1

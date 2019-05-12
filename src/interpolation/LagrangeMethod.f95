@@ -17,7 +17,7 @@ CONTAINS
     continueL=.true.
 	
     print*, "Remeber that the points must be in Points.txt under the appropiate format. Check documentation if needed."
-    call readPoints(x,y,n)
+    call readPoints(x,y,n, 'inputs/Points.txt ')
     
 	call askForPoints(value, degree, point)
 	

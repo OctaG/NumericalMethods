@@ -17,7 +17,7 @@ MODULE NewtonDivededDifference
         ! point=0
         ! isNotValid=.true.
         
-        call readPoints(x,y,n)
+        call readPoints(x,y,n, 'inputs/Points.txt ')
 
         allocate(aux(n-1,n-1))
 

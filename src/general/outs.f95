@@ -79,4 +79,12 @@ module outs
         close(1)
     end subroutine resultToFileINTERPOLNEWTON
 
+    subroutine resultToFileREGRESSION(file_name, value, res)
+        character(len = 23) :: file_name
+        real :: value, res
+        open(1, file = 'results/'//file_name, action='write',position='append', status='unknown')
+            write(1,*) "f(", value, ")= ", res
+        close(1)
+    end subroutine resultToFileREGRESSION
+
 end module outs
