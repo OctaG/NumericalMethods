@@ -11,7 +11,7 @@ CONTAINS
         call askForLimits(a, b, tol, maxIts)
 
         cont=2
-        its=1
+        its=0
         goal=.false.
         oldSum=0
         relEr=0
@@ -51,8 +51,8 @@ CONTAINS
 
         if(.NOT.goal) then
             print *,'Max iterations passed.'
-            print*, 'Integral = ', sum
-            call outIntegral(sum, relEr, tol, .false.)
+            print*, 'Integral = ', oldSum
+            call outIntegral(oldSum, relEr, tol, .false.)
         end if
 
         call system('clear')
@@ -69,7 +69,7 @@ CONTAINS
         call askForLimits(a, b, tol, maxIts)
 
         cont=3
-        its=1
+        its=0
         goal=.false.
         oldSum=0
         relEr=0
@@ -108,8 +108,8 @@ CONTAINS
 
         if(.NOT.goal) then
             print *,'Max iterations passed.'
-            print*, 'Integral = ', sum
-            call outIntegral(sum, relEr, tol, .false.)
+            print*, 'Integral = ', oldSum
+            call outIntegral(oldSum, relEr, tol, .false.)
         end if
 
         call system('clear')
@@ -126,7 +126,7 @@ CONTAINS
         call askForLimits(a, b, tol, maxIts)
 
         cont=1
-        its=1
+        its=0
         goal=.false.
         oldSum=0
         relEr=0
@@ -166,8 +166,8 @@ CONTAINS
 
         if(.NOT.goal) then
             print *,'Max iterations passed.'
-            print*, 'Integral = ', sum
-            call outIntegral(sum, relEr, tol, .false.)
+            print*, 'Integral = ', oldSum
+            call outIntegral(oldSum, relEr, tol, .false.)
         end if
 
         call system('clear')
