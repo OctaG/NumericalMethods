@@ -49,7 +49,8 @@ contains
         xold=a
         yold=fa
         yorig = fa + h*fdexy(a,fa)
-        print *,'value at x = ',b,' using biggest interval = ',yorig
+        print *,'Value at x = ',b,' using biggest interval = ',yorig
+        write(1,*) 'Value at x = ',b,' using biggest interval = ',yorig
         do while (converged == 0 .and. its < maxits)
              intercount=intercount*2
             hnew=h/intercount
@@ -69,7 +70,9 @@ contains
           end do
           its = its -1
           print *, 'y at x = ',b,' = ',yorig, ' using an h = ',hnew
+          write(1,*) 'y at x = ',b,' = ',yorig, ' using an h = ',hnew
           print *, 'with a relative error of ',errorrel, 'after ',its,' iterations'
+          write(1,*) 'with a relative error of ',errorrel, 'after ',its,' iterations'
           !write (*,*) 'press 1 to go back or 0 to finish'
           !read (*,*) cont
         endif
