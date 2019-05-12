@@ -89,7 +89,7 @@ MODULE modulo_f
 !================================================================================
 
 !=============================== BRACKTED METHODS ===============================
-!Bisection, False 
+!Bisection, False
 
   !Used in bracketed methods
   SUBROUTINE askForTwoInputs(a, b, isInterval)
@@ -160,10 +160,10 @@ MODULE modulo_f
 !****************************************************************************************************
 
   !======================== READ FILE ==========================
-  subroutine writeFileToMatrix(n, a, b, x)
+  subroutine writeFileToMatrix(n, a, b, x, copyOfA, copyOfB)
     integer:: n
-    real, dimension(:,:), allocatable :: a
-    real, dimension(:), allocatable :: b
+    real, dimension(:,:), allocatable :: a, copyOfA
+    real, dimension(:), allocatable :: b, copyOfB
     real, dimension(:), allocatable :: x
 
     !print*, "Reading now from", filename
@@ -173,6 +173,8 @@ MODULE modulo_f
     allocate(a(n,n))
     allocate(b(n))
     allocate(x(n))
+    allocate(copyOfA(n,n))
+    allocate(copyOfB(n))
 
     read(1, *) a
     !Changes the format of the matrix
@@ -180,14 +182,26 @@ MODULE modulo_f
 
     read(1, *) b
 
+    copyOfA = a
+    copyOfB = b
+
     close (1, status = 'keep')
   end subroutine writeFileToMatrix
   !=============================================================
 
+  !================= READ Right Hand Side file =================
+  subroutine writeRHSToMatrix(b)
+    real, dimension(:) :: b
+    open(1, file = 'inputs/RHS.txt')
+    read(1, *) b
+    close (1, status = 'keep')
+  end subroutine writeRHSToMatrix
+  !=============================================================
+
   !======================== SHOW OUPUT ==========================
-  subroutine writeResultsToFile(a, x, n)
-      real, dimension(:,:), allocatable :: a
-      real, dimension(:), allocatable :: x
+  subroutine writeResultsToFile(a, x, n, copyOfA, copyOfB)
+      real, dimension(:,:), allocatable :: a, copyOfA
+      real, dimension(:), allocatable :: x, copyOfB
       integer :: i, n
 
       a = transpose(a)
@@ -197,7 +211,7 @@ MODULE modulo_f
       do i = 1, n
         print*, "x", i, "= ", x(i)
       end do
-      call resultToFileSOLEQ(a,x,n)
+      call resultToFileSOLEQ(a,x,n,copyOfA,copyOfB)
       call system('clear')
       print*, "Complete..."
       print*, ""
@@ -222,7 +236,7 @@ MODULE modulo_f
 
     open(7, file = 'inputs/Points.txt')
   	read(7, *) n
-	
+
 	  allocate(x(n))
   	allocate(y(n))
 
@@ -238,7 +252,7 @@ MODULE modulo_f
     integer:: degree, point
     real:: value, limit
     logical::isNotValid
-    
+
     isNotValid=.true.
 
   	print*, "Give me the point you want evaluated."
@@ -254,7 +268,7 @@ MODULE modulo_f
             print*, "You can not give that value because the list of numbers starts at 1"
         END IF
     END DO
-	
+
 
 	DO WHILE (isNotValid)
     limit=point+degree

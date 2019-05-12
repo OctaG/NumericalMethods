@@ -7,13 +7,14 @@ module LU_DecompositionMethod
 
     subroutine LU_Decomposition()
 
-      integer:: n
-      real, dimension(:,:), allocatable :: a
-      real, dimension(:), allocatable :: b
+      integer:: n, continue
+      real, dimension(:,:), allocatable :: a, copyOfA
+      real, dimension(:), allocatable :: b, copyOfB
       real, dimension(:), allocatable :: x
       real:: sum
 
-      call writeFileToMatrix(n, a, b, x)
+      continue = 1
+      call writeFileToMatrix(n, a, b, x, copyOfA, copyOfB)
       print*, "Starting ..."
         print*, ""
 
@@ -45,29 +46,34 @@ module LU_DecompositionMethod
       end do
       a(n,n) = a(n,n) - sum
 
-
-      !Forwards substitution
-      b(1) = b(1)/a(1,1)
-      do i = 2, n
-        sum = b(i)
-        do j = 1, i - 1
-          sum = sum - (a(i,j) * b(j))
+     do while(continue /= 0)
+        !Forwards substitution
+        b(1) = b(1)/a(1,1)
+        do i = 2, n
+          sum = b(i)
+          do j = 1, i - 1
+            sum = sum - (a(i,j) * b(j))
+          end do
+          b(i) = sum / a(i,i)
         end do
-        b(i) = sum / a(i,i)
-      end do
 
-      !Backwards substitution
-      x(n) = b(n)
+        !Backwards substitution
+        x(n) = b(n)
 
-      do i = n - 1, 1, -1
-        sum = 0
-        do j = i + 1, n
-          sum = sum + (a(i,j) * x(j))
+        do i = n - 1, 1, -1
+          sum = 0
+          do j = i + 1, n
+            sum = sum + (a(i,j) * x(j))
+          end do
+          x(i) = (b(i) - sum)
         end do
-        x(i) = (b(i) - sum)
-      end do
 
-      call writeResultsToFile(a, x, n)
+        call writeResultsToFile(a, x, n, copyOfA, copyOfB)
+        print*, "Would you like to solve for a different RHS [yes = 1/ no = 0]"
+        read*, continue
+        call writeRHSToMatrix(b)
+        copyOfB = b
+      end do
 
     end subroutine LU_Decomposition
 
