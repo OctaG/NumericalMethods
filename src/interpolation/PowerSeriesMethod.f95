@@ -1,5 +1,6 @@
 MODULE PowerSeriesMethod
     use modulo_f
+    use outs
 
     CONTAINS
 
@@ -63,9 +64,9 @@ MODULE PowerSeriesMethod
             end do
             
 
-        print*, resultP
+        !print*, resultP
 
-        call resultToFileINTERPOLATION(value, sum)
+        call resultToFileINTERPOLATIONPower(value, resultP, aResults, degree, point)
 
     END SUBROUTINE PowerSeries
 
