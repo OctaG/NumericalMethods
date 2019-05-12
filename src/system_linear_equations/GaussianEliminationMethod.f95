@@ -7,12 +7,12 @@ module GaussianEliminationMethod
 
     subroutine GaussianElimination()
         integer:: n
-        real, dimension(:,:), allocatable :: a
-        real, dimension(:), allocatable :: b
+        real, dimension(:,:), allocatable :: a, copyOfA
+        real, dimension(:), allocatable :: b, copyOfB
         real, dimension(:), allocatable :: x
         real:: sum
 
-        call writeFileToMatrix(n, a, b, x)
+        call writeFileToMatrix(n, a, b, x, copyOfA, copyOfB)
         print*, "Starting ..."
         print*, ""
         !Forward elimination
@@ -37,7 +37,7 @@ module GaussianEliminationMethod
           x(i) = sum/a(i,i)
         end do
 
-        call writeResultsToFile(a, x, n)
+        call writeResultsToFile(a, x, n, copyOfA, copyOfB)
 
     end subroutine GaussianElimination
 

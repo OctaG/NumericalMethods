@@ -7,13 +7,13 @@ module GaussSeidelMethod
 
       subroutine GaussSeidel()
         integer:: n, max
-        real, dimension(:,:), allocatable :: a
-        real, dimension(:), allocatable :: b
+        real, dimension(:,:), allocatable :: a, copyOfA
+        real, dimension(:), allocatable :: b, copyOfB
         real, dimension(:), allocatable :: x
         real:: sum, lambda = 1.0, tolerance, isolated
 
         !Lambda can be stablished different if relaxation is needed
-        call writeFileToMatrix(n, a, b, x)
+        call writeFileToMatrix(n, a, b, x, copyOfA, copyOfB)
         call askForStopValues(tolerance, max)
         print*, "Starting ..."
         print*, ""
@@ -71,11 +71,7 @@ module GaussSeidelMethod
           end if
         end do
 
-	      do i = 1, n
-   	      print*, x(i)
-        end do
-
-        call writeResultsToFile(a, x, n)
+        call writeResultsToFile(a, x, n, copyOfA, copyOfB)
 
       end subroutine GaussSeidel
 
