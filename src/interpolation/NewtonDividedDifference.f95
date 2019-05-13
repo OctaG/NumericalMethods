@@ -10,6 +10,7 @@ MODULE NewtonDivededDifference
         real, dimension(:,:), allocatable :: aux
         integer:: n, i, j, degree
         logical:: isNotValid = .false.
+        character(len = 23) :: file_name   
 
         ! sum=0
         ! value=0
@@ -17,7 +18,10 @@ MODULE NewtonDivededDifference
         ! point=0
         ! isNotValid=.true.
         
-        call readPoints(x,y,n, 'inputs/Points.txt ')
+        file_name = "Points.txt"
+        
+        call readPoints(x,y,n, file_name)
+    
 
         allocate(aux(n-1,n-1))
 

@@ -14,11 +14,12 @@ CONTAINS
         real, dimension(:), allocatable :: newPoints
         real, dimension(:), allocatable:: aResults
         real, dimension(:,:), allocatable::matrix
-        character (len = 23) :: file_name
         integer:: n, i, degree, size, j, k, k2, startPoint=0, numberPoints, cont=1, answer
         logical::isNotValid=.true., state=.true.
-
-        call readPoints(x,y,n, 'inputs/Points2.txt')
+        character(len = 23) :: file_name   
+        file_name = "Points.txt"
+      
+        call readPoints(x,y,n, file_name)
 
         degree = -1
 
@@ -27,7 +28,7 @@ CONTAINS
             read*, degree
             if(degree == 1) then
                 print*, "Use linear"
-            else
+            else if(degree < 1 ) then
                 print*, "Must be natural"
             end if
         end do

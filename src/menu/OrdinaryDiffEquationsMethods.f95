@@ -16,7 +16,7 @@ module OrdinaryDiffEquationsMethods
       print*, "Here you can choose between 4 amazing numerical methods to find the solution of a differential equations"
       option = -1
       do while(option /= 5) ! not equal
-        print*, "=== Root Finding Methods ==="
+        print*, "=== Ordinary Differential Equations ==="
         call funcionDiffHumanize()
         print*,""
         print*, "Select one option"

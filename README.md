@@ -69,7 +69,9 @@ Questions or request [GitHub Repo](https://github.com/OctaG/NumericalMethods "Li
 
 *Note: For `txt` files in* **inputs** *the numbers must be separated by spaces*
 
-*Note 2: For `txt` files in* **outputs** *if the file already exists, the info will append to the current text in the file*
+*Note 2: For `txt` files in* **inputs** *files must be in the inputs directory*
+
+*Note 3: For `txt` files in* **outputs** *if the file already exists, the info will append to the current text in the file*
 
 
 \newpage
@@ -122,7 +124,7 @@ SUBROUTINE funcionHumanize()
 - LU Decomposition
 - Gauss-Seidel
 
-**Required file:** `myData.txt`, `RHS.txt`
+**Required default file:** `myData.txt`, `RHS.txt`
 
 **Format:**
 
@@ -168,7 +170,7 @@ $b_1\:b_2\:...\:b_{n}$
 - Lagrange
 - Newton Divided Differences
 
-**Required file:** `Points.txt`
+**Required default file:** `Points.txt`
 
 **Format:**
 
@@ -208,14 +210,9 @@ $y_1,\:y_2,\:y_3,\:...,\:y_n$
 - Exponential Regression
 - Logarithmic Regression
 
-**Required file:** 
+**Required default file:** `Points.txt`
 
-- Linear Regression : `Points2.txt`
-- Polynomial Regression : `Points2.txt`
-- Exponential Regression : `Points2.txt`
-- Logarithmic Regression: `Points3.txt`
-
-**Format:** For both files the appropiate format of the data is as follows:
+**Format:** The appropiate format of the data is as follows:
 
 $n$
 
@@ -249,7 +246,7 @@ $y_1,\:y_2,\:y_3,\:...,\:y_n$
 - Simpson $\frac{1}{3}$
 - Simpson $\frac{3}{8}$
 
-**Required file:** 
+**Required default file:** 
 
 - Trapezoidal Rule (with data): `Points.txt`
 - Trapezoidal Rule (with function) and Simpson: `functions.f95`

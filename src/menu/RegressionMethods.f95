@@ -42,9 +42,7 @@ module RegressionMethods
               call LinearEx()
             case (4)
               print *, "Logarithmic"
-              print*, "-- Remeber that the points must be in Points3.txt under the appropiate format."
-              print*, "-- Check documentation if needed."
-              print*,""
+              call printReminder()
               call LinearLog()
             case (5)
               print*, "You have left the regression module"
@@ -57,7 +55,7 @@ module RegressionMethods
       end subroutine Regression
 
       subroutine printReminder()
-        print*, "-- Remeber that the points must be in Points2.txt under the appropiate format."
+        print*, "-- Remeber that the default file is Points.txt, must be under the appropiate format."
         print*, "-- Check documentation if needed."
         print*,""
       end subroutine printReminder

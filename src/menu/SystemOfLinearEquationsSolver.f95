@@ -52,7 +52,7 @@ module SystemOfLinearEquationsSolver
     end subroutine SystemOfLinearEquations
 
     subroutine printReminder()
-      print*, "-- Remember that the matrix data must be in myData.txt under the appropiate format."
+      print*, "-- Remember that the matrix data is in the default file myData.txt under the appropiate format."
       print*, "-- Check documentation if needed."
       print*,""
     end subroutine printReminder

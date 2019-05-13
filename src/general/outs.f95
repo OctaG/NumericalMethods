@@ -40,7 +40,7 @@ module outs
         print*, "Up to 20 characters, please"
         read*, file_name
         open(1, file = 'results/'//file_name, action='write',position='append', status='unknown')
-        write(1, *) "This is the system of equations you just solved:"
+        write(1, *) "This is the system of equations you just solved in the form: A0 + A1x^1 + ... + Anx^n"
         do i = 1, n
             do j = 1, n-1
               write(1, "(f10.4, a2)", advance='no') copyOfA(i,j), " + "

@@ -33,8 +33,6 @@ contains
            xnew = xold + h
            k1 = fdexy(xold,yold)
            ynew = yold + h * k1
-           print*, ynew
-           write(1,*) ynew
            print *, xnew, ynew
            write(1,*) xnew, ynew
            xold = xnew

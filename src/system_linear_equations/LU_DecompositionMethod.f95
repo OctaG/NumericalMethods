@@ -12,9 +12,11 @@ module LU_DecompositionMethod
       real, dimension(:), allocatable :: b, copyOfB
       real, dimension(:), allocatable :: x
       real:: sum
-
+      character(len = 23) :: file_name   
+      file_name = "myData.txt"
+      call askInpuFile(file_name)
       continue = 1
-      call writeFileToMatrix(n, a, b, x, copyOfA, copyOfB)
+      call writeFileToMatrix(n, a, b, x, copyOfA, copyOfB,file_name)
       print*, "Starting ..."
       print*, ""
 
@@ -71,6 +73,7 @@ module LU_DecompositionMethod
         call writeResultsToFile(a, x, n, copyOfA, copyOfB)
 
         print*, "Would you like to solve for a different RHS [yes = 1/ no = 0]"
+        print*, "Remember RHS should be in RHS.txt"
         read*, continue
         call writeRHSToMatrix(b)
         copyOfB = b

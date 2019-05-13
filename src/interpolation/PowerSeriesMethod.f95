@@ -14,6 +14,7 @@ MODULE PowerSeriesMethod
         real, dimension(:,:), allocatable::matrix
         integer:: n, i, j, degree, point, size, pointT, cont, n2
         logical:: isNotValid
+        character(len = 23) :: file_name   
         sum=0
         value=0
         degree=0
@@ -21,7 +22,9 @@ MODULE PowerSeriesMethod
         point=0
         isNotValid=.true.
         
-        call readPoints(x,y,n, 'inputs/Points.txt ')
+        file_name = "Points.txt"
+        
+        call readPoints(x,y,n, file_name)
         call askForPoints(value, degree, point, n)
         
         size=degree+1

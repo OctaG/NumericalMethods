@@ -34,14 +34,6 @@ contains
         k3 = fdexy(xnew,yold-h*k1+2*h*k2)
 
         ynew = yold + (h/6)*(k1+4*k2+k3)
-                  print*, k1
-                  write(1,*) k1
-                  print*, k2
-                  write(1,*) k2
-                  print*, k3
-                  write(1,*) k3
-                  print*, ynew
-                  write(1,*) ynew
         print *, xnew, ynew
         write(1,*) xnew, ynew
         xold = xnew

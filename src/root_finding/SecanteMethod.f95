@@ -8,7 +8,13 @@ MODULE SecanteMethod
       integer:: iter, max
       iter = 0
 
-      call askForOneInput(x1)
+      x1 = 0
+      do WHILE (x1 .eq. 0)
+        call askForOneInput(x1)
+        if(x1 == 0)then
+          print*,"Can not be 0"
+        end if
+      end do
       x2 = x1 * 0.99
 
       call askForStopValues(tolerancia, max)

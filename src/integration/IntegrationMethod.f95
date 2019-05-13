@@ -180,8 +180,13 @@ CONTAINS
         integer:: cont, n
         real, dimension(:), allocatable::x
         real, dimension(:), allocatable::y
+        character(len = 23) :: file_name
+
+        file_name='Points.txt'
+
+        call askInpuFile(file_name)
     
-        open(7, file = 'inputs/Points.txt')
+        open(7, file = 'inputs/'//file_name)
           read(7, *) n
     
         allocate(x(n))

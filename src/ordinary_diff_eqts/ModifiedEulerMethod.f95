@@ -35,14 +35,6 @@ contains
 
         ynew = yold + (h/2)*(k1+k2)
 
-                  print*, k1
-                  write(1,*) k1
-                  print*, k2
-                  write(1,*) k2
-
-                  print*, ynew
-                  write(1,*) ynew
-
         print *, xnew, ynew
         write(1,*) xnew, ynew
         xold = xnew

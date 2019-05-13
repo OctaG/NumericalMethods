@@ -4,6 +4,21 @@ MODULE modulo_f
 
   contains
 
+  SUBROUTINE askInpuFile(file_name)
+    integer::answerInput
+    character(len = 23) :: file_name
+    print*, "Do you want to use the default file or use one of your files"
+    print*, "Your file=1, Default=0"
+    print*, "Remember that the file must be in the inputs directory"
+    read*, answerInput
+    if(answerInput==1) then
+      print*, "Type the file name where you want to read: "
+      print*, "Up to 20 characters, please"
+      read*, file_name
+    end if
+
+  END SUBROUTINE askInpuFile
+
 !****************************************************************************************************
 !******************************************* ROOT FINDING *******************************************
 !****************************************************************************************************
@@ -160,14 +175,15 @@ MODULE modulo_f
 !****************************************************************************************************
 
   !======================== READ FILE ==========================
-  subroutine writeFileToMatrix(n, a, b, x, copyOfA, copyOfB)
+  subroutine writeFileToMatrix(n, a, b, x, copyOfA, copyOfB, file_name)
     integer:: n
     real, dimension(:,:), allocatable :: a, copyOfA
     real, dimension(:), allocatable :: b, copyOfB
     real, dimension(:), allocatable :: x
+    character(len = 23) :: file_name
 
     !print*, "Reading now from", filename
-    open(1, file = 'inputs/myData.txt')
+    open(1, file = 'inputs/'//file_name)
     read(1, *) n
 
     allocate(a(n,n))
@@ -229,12 +245,14 @@ MODULE modulo_f
 
   !================================ READ POINTS ======================================
   subroutine readPoints(x,y,n, points_file)
-    character (len = 18) :: points_file
+    character (len = 23) :: points_file
     real, dimension(:), allocatable::x
     real, dimension(:), allocatable::y
     integer:: n
 
-    open(7, file = 'inputs/Points.txt')
+    call askInpuFile(points_file)
+
+    open(7, file = 'inputs/'//points_file)
   	read(7, *) n
 
 	  allocate(x(n))
@@ -364,7 +382,7 @@ MODULE modulo_f
     read*, numberPoints
     if(numberPoints>n) then
       numberPoints=n
-      print*, "It was took number of points = ", n
+      print*, "Invalid number, The number of points used was = ", n
     else if(numberPoints<2) then
       numberPoints=2
       print*, "It was took number of points = 2"

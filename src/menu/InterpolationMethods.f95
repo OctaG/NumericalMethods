@@ -50,7 +50,7 @@ module InterpolationMethods
     end subroutine Interpolation
 
     subroutine printReminder()
-      print*, "-- Remeber that the points must be in Points.txt under the appropiate format."
+      print*, "-- Remeber that the default file is Points.txt, must be under the appropiate format."
       print*, "-- Check documentation if needed."
       print*,""
     end subroutine printReminder

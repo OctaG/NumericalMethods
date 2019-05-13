@@ -12,14 +12,17 @@ CONTAINS
     real, dimension(:), allocatable::coef
     integer:: n, i, j, degree, point, answer, coefCont
     logical::continueL
+    character(len = 23) :: file_name   
     sum=0
     value=0
     degree=0
     point=0
     continueL=.true.
     coefCont=1
+
+    file_name = "Points.txt"
 	
-    call readPoints(x,y,n, 'inputs/Points.txt ')
+    call readPoints(x,y,n, file_name)
     
 	call askForPoints(value, degree, point, n)
 	

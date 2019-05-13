@@ -39,7 +39,7 @@ module IntegrationMethods
             call Trapezoidal()
           case (4)
             print *, "Trapezoidal with Data"
-            print*, "-- Remeber that the points must be in Points.txt under the appropiate format."
+            print*, "-- Remeber that the default file is Points.txt, must be under the appropiate format."
             print*, "-- Check documentation if needed."
             print*,""
             call TrapezoidalWithData()

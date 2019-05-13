@@ -11,9 +11,13 @@ module GaussSeidelMethod
         real, dimension(:), allocatable :: b, copyOfB
         real, dimension(:), allocatable :: x
         real:: sum, lambda = 1.0, tolerance, isolated
+        character(len = 23) :: file_name   
+        file_name = "myData.txt"
+        call askInpuFile(file_name)
+    
+        call writeFileToMatrix(n, a, b, x, copyOfA, copyOfB,file_name)
 
         !Lambda can be stablished different if relaxation is needed
-        call writeFileToMatrix(n, a, b, x, copyOfA, copyOfB)
         call askForStopValues(tolerance, max)
         print*, "Starting ..."
         print*, ""

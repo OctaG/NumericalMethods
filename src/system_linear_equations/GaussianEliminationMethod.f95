@@ -11,8 +11,11 @@ module GaussianEliminationMethod
         real, dimension(:), allocatable :: b, copyOfB
         real, dimension(:), allocatable :: x
         real:: sum
-
-        call writeFileToMatrix(n, a, b, x, copyOfA, copyOfB)
+        character(len = 23) :: file_name   
+        file_name = "myData.txt"
+        call askInpuFile(file_name)
+    
+        call writeFileToMatrix(n, a, b, x, copyOfA, copyOfB,file_name)
         print*, "Starting ..."
         print*, ""
         !Forward elimination

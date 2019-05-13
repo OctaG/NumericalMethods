@@ -13,9 +13,10 @@ CONTAINS
         real, dimension(:), allocatable :: y
         integer:: n, i, startPoint=0, numberPoints, cont=1, answer
         logical::isNotValid=.true., state=.true.
-
-
-        call readPoints(x,y,n, 'inputs/Points2.txt')
+        character(len = 23) :: file_name   
+        file_name = "Points.txt"
+        
+        call readPoints(x,y,n, file_name)
         numberPoints=0
         call askForNumberOfPoints(numberPoints, n)
         startPoint=0
